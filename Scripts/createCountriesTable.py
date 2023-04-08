@@ -9,7 +9,7 @@ def create_countries_table(connection):
     cur.execute(
         "CREATE TABLE IF NOT EXISTS countries ("
             "ISO VARCHAR(2),"
-            "ISO3 VARCHAR(50),"
+            "ISO3 VARCHAR(3),"
             "ISO_Code INTEGER PRIMARY KEY,"
             "FIPS VARCHAR(50),"
             "Display_Name VARCHAR(50),"

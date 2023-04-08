@@ -36,7 +36,8 @@ def create_countries_table(connection):
     )
     #create a new csv file
     
-
+    countries_names_dict = {}
+    countries_iso2_dict = {}
     with open('../Datasets/countries/countries.csv', 'r', encoding='iso-8859-1') as infile:
         with open('../Datasets/countries/countries_updated.csv', 'w+', encoding='utf-8') as outfile:
             reader = csv.reader(infile)
@@ -47,6 +48,9 @@ def create_countries_table(connection):
                         row[i] = row[i].replace(",", "")
                     elif "#N/A" in row[i]:
                         row[i] = ""
+                    
+                countries_names_dict[row[5]] = row[2]
+                countries_iso2_dict[row[0]] = row[2]
                 writer.writerow(row)   
             outfile.seek(0) # move the file pointer to the beginning of the file         
             next(outfile) # skip header row
@@ -56,3 +60,4 @@ def create_countries_table(connection):
     cur.close()
     connection.close()
     print('Counties table created!')
+    return countries_names_dict, countries_iso2_dict

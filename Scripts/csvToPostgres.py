@@ -20,5 +20,7 @@ def connect_to_db():
 if __name__ == "__main__":
     connection = connect_to_db()
     print("Connection:", connection)
-    create_countries_table(connection)
+    countries_names_dict, countries_iso2_dict = create_countries_table(connection)
+    
+
     connection.close()

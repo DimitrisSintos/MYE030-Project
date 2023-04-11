@@ -37,7 +37,7 @@ def create_countries_table(connection):
     #create a new csv file
     
     countries_names_dict = {}
-    countries_iso2_dict = {}
+    countries_fips_dict = {}
     with open('../Datasets/countries/countries.csv', 'r', encoding='iso-8859-1') as infile:
         with open('../Datasets/countries/countries_updated.csv', 'w+', encoding='utf-8') as outfile:
             reader = csv.reader(infile)
@@ -50,14 +50,16 @@ def create_countries_table(connection):
                         row[i] = ""
                     
                 countries_names_dict[row[5]] = row[2]
-                countries_iso2_dict[row[0]] = row[2]
+                if row [3] != '':
+                    countries_fips_dict[row[3]] = row[2]
+                else:
+                    countries_fips_dict[row[0]] = row[2]
                 writer.writerow(row)   
             outfile.seek(0) # move the file pointer to the beginning of the file         
             next(outfile) # skip header row
-            cur.copy_from(outfile, 'countries', sep=',', null='')
+            #cur.copy_from(outfile, 'countries', sep=',', null='')
 
     # close the cursor and connection
     cur.close()
-    connection.close()
     print('Counties table created!')
-    return countries_names_dict, countries_iso2_dict
+    return countries_names_dict, countries_fips_dict

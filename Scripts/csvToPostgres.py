@@ -2,6 +2,7 @@ import psycopg2
 import pandas as pd
 from createCountriesTable import create_countries_table
 from createInternationalTables import create_internanional_tables
+from createIncomeTables import create_income_tables
 
 
 def connect_to_db():
@@ -21,9 +22,9 @@ def connect_to_db():
 if __name__ == "__main__":
     connection = connect_to_db()
     print("Connection:", connection)
+
     countries_names_dict, countries_fips_dict = create_countries_table(connection)
     create_internanional_tables(connection, countries_fips_dict)
-
-    
+    create_income_tables(connection)
 
     connection.close()

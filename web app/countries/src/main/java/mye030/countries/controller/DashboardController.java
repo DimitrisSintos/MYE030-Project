@@ -1,6 +1,10 @@
 package mye030.countries.controller;
 
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
+=======
+import org.springframework.ui.Model;
+>>>>>>> local
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller

@@ -28,8 +28,8 @@ public class ApiController {
 
         // Example response
         ResponseDTO response = countryService.findGdpPerCapitaByCountries(requestDTO.getCountries());
+        System.out.println(requestDTO);
         // System.out.println(response);
-        // System.out.println(requestDTO);
         // Set the response properties based on the request data
         
 

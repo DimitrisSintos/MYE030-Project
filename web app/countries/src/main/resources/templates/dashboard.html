@@ -480,17 +480,18 @@ class Chart {
     }
     getTimeSeriesData(){
         let data= {
-            'countries': this._countries,
-            'fields': this._fields,
-            'years': this._xRange,
+            "countries": this._countries,
+            "fields": this._fields,
+            "years": this._xRange,
         };
         console.log("data: ",data);
         let chartData = {}
         $.ajax({
             url: "/api/getTimeseriesData",
-            type: "GET",
+            type: "POST",
+            contentType: "application/json",
             async: false,
-            data: data,
+            data: JSON.stringify(data),
         }).done(function(response){
             chartData = response.data;
             console.log("Timeseries data: ",chartData);

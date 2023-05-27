@@ -16,6 +16,7 @@
     <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script>
     <!-- Multi Select -->
     <script type="text/javascript" th:src="@{/js/jquery.multi-select.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.quicksearch.js}"></script>
     
     <title>Document</title>
 </head>
@@ -181,8 +182,76 @@ window.addEventListener('resize', function(){
     }
 });
 
-$('#countriesSelect').multiSelect();
-$('#fieldsSelect').multiSelect();
+$('#countriesSelect').multiSelect({
+  selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
+  selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
+  afterInit: function(ms){
+    var that = this,
+        $selectableSearch = that.$selectableUl.prev(),
+        $selectionSearch = that.$selectionUl.prev(),
+        selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+        selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+
+    that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+    .on('keydown', function(e){
+      if (e.which === 40){
+        that.$selectableUl.focus();
+        return false;
+      }
+    });
+
+    that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+    .on('keydown', function(e){
+      if (e.which == 40){
+        that.$selectionUl.focus();
+        return false;
+      }
+    });
+  },
+  afterSelect: function(){
+    this.qs1.cache();
+    this.qs2.cache();
+  },
+  afterDeselect: function(){
+    this.qs1.cache();
+    this.qs2.cache();
+  }
+});
+$('#fieldsSelect').multiSelect({
+  selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
+  selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
+  afterInit: function(ms){
+    var that = this,
+        $selectableSearch = that.$selectableUl.prev(),
+        $selectionSearch = that.$selectionUl.prev(),
+        selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+        selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+
+    that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+    .on('keydown', function(e){
+      if (e.which === 40){
+        that.$selectableUl.focus();
+        return false;
+      }
+    });
+
+    that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+    .on('keydown', function(e){
+      if (e.which == 40){
+        that.$selectionUl.focus();
+        return false;
+      }
+    });
+  },
+  afterSelect: function(){
+    this.qs1.cache();
+    this.qs2.cache();
+  },
+  afterDeselect: function(){
+    this.qs1.cache();
+    this.qs2.cache();
+  }
+});
 class Chart {
     constructor(
         id,
@@ -191,7 +260,7 @@ class Chart {
         fields = [],
         showLegend = false,
         xRange = { min: null, max: null },
-        aggTime = "None",
+        aggTime = "none",
         chartTitle = "",
         xTitle = "",
         yTitle = "",
@@ -285,8 +354,8 @@ class Chart {
         console.log("chartTitle: ", this._chartTitle);
         console.log("xTitle: ", this._xTitle);
         console.log("yTitle: ", this._yTitle);
+        const chartData = this._chartType === 'lines+markers' ? this.getTimeSeriesData() : {};
         return
-        // const chartData = this._chartType != 'ct-ring-num' ? this.getChartData() : this.getRingNumChartData();
         // if(chartData == null ){
         //     //clear chart
         //     Plotly.react(this._id);
@@ -409,32 +478,21 @@ class Chart {
 
         });
     }
-    getChartData(){
-        const traces_table_fields = {};
-        const righAxis_table_fields = {};
-        for (const key in this._traces) {
-            //chech if this.rightAxis has as key the same key as this._traces
-            if (this.rightAxis[key]) {
-                righAxis_table_fields[key] =  this._rightAxis[key].table_field ;
-            }else{
-                traces_table_fields[key] =  this._traces[key].table_field ;
-            }
-        }
-        let chartData = {};
+    getTimeSeriesData(){
+        let data= {
+            'countries': this._countries,
+            'fields': this._fields,
+            'years': this._xRange,
+        };
+        let chartData = {}
         $.ajax({
-            url: "/tbm/get-traces-data",
+            url: "/getTimeseriesData",
             type: "GET",
             async: false,
-            data: {
-                tbm: this.tbm,
-                chart_type: this._chartType,
-                x_range : JSON.stringify(this._xRange),
-                traces_table_fields: JSON.stringify(traces_table_fields),
-                righAxis_table_fields: JSON.stringify(righAxis_table_fields),
-            }
+            data: data,
         }).done(function(response){
             chartData = response.data;
-
+            console.log("Timeseries data: ",chartData);
         }).fail(function(err){
             console.log("err: ",err);
             chartData = null;
@@ -489,18 +547,7 @@ function toggleSidebar(){
     
 }
 function updateChart(){
-    // id,
-    //     chartType = "lines+markers",
-    //     countries = [],
-    //     fields = [],
-    //     showLegend = false,
-    //     xRange = { min: null, max: null },
-    //     aggTime = "",
-    //     chartTitle = "",
-    //     xTitle = "",
-    //     yTitle = "",
-    // $('#countriesSelect').multiSelect();
-    // $('#fieldsSelect').multiSelect();
+    
     charts[selectedChart].chartType = $("#chartType").val();
     console.log($("#countriesSelect").val());
     charts[selectedChart].countries = $("#countriesSelect").val();
@@ -520,10 +567,10 @@ function deleteChart(){
     $("#"+chartToDelete).remove();
     //remove from chartsIds
     chartsIds = chartsIds.filter(function(value, index, arr){
-        return value != 'chart'+chrartToDelete.split("_")[2];
+        return value != 'chart'+chartToDelete.split("_")[2];
     });
     //remove from charts
-    delete charts['chart'+chrartToDelete.split("_")[2]];
+    delete charts['chart'+chartToDelete.split("_")[2]];
     if(chartsIds.length == 0){
         $(".no-chart-paragraph").show();
         $(".data-source").css("display", "none");
@@ -550,14 +597,41 @@ function selectChart(chartId){
     $(".no-chart-paragraph").hide();
     $(".data-source").css("display", "flex");
     
+
+    // charts[selectedChart].chartType = $("#chartType").val();
+    // console.log($("#countriesSelect").val());
+    // charts[selectedChart].countries = $("#countriesSelect").val();
+    // charts[selectedChart].fields = $("#fieldsSelect").val();
+    // charts[selectedChart].xRange = { min: $("#min-year").val(), max: $("#max-year").val() };
+    // let aggTime = $('input[name="customRadioInline1"]:checked').attr('id');
+    // console.log("aggTime: ",aggTime);
+    // charts[selectedChart].aggTime = aggTime != undefined ? aggTime : "None";
+    // charts[selectedChart].chartTitle = $("#chartTitle").val();
+    // charts[selectedChart].xTitle = $("#xTitle").val();
+    // charts[selectedChart].yTitle = $("#yTitle").val();
     //fetch chart settings
     $("#chartTitle").val(charts[selectedChart].chartTitle);
-    console.log("charts[selectedChart].chartType: ",charts[selectedChart].chartType);
-    $("#chartType").val(charts[selectedChart].chartType);
     $("#xTitle").val(charts[selectedChart].xTitle);
     $("#yTitle").val(charts[selectedChart].yTitle);
-
+    $("#chartType").val(charts[selectedChart].chartType);
+    $("#countriesSelect").multiSelect('deselect_all');
+    $("#countriesSelect").multiSelect('select', charts[selectedChart].countries);
+    $("#fieldsSelect").multiSelect('deselect_all');
+    $("#fieldsSelect").multiSelect('select', charts[selectedChart].fields);
+    $("#min-year").val(charts[selectedChart].xRange.min);
+    $("#max-year").val(charts[selectedChart].xRange.max);
+    $("#"+charts[selectedChart].aggTime).prop("checked", true);
+    
 }
+function moveChart(move, chartContainerID){
+    event.stopPropagation();
+    if (move == "up"){
+        $("#"+chartContainerID).insertBefore($("#"+chartContainerID).prev());
+    }else if(move == "down"){
+        $("#"+chartContainerID).insertAfter($("#"+chartContainerID).next());
+    }
+}
+
 
 </script>
 

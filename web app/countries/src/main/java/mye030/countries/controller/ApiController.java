@@ -16,22 +16,25 @@ import mye030.countries.dto.ResponseDTO;
 import mye030.countries.model.Country;
 import mye030.countries.service.countryService;
 
-@Controller
-public class DashboardController {
+@RestController
+@RequestMapping("/api")
+public class ApiController {
     @Autowired
     private countryService countryService;
 
-    @RequestMapping("/")
-    public String dashboard(Model model) {
+    @PostMapping("/getTimeseriesData")
+    public ResponseEntity<ResponseDTO> getTimeseriesData(@RequestBody RequestDTO requestDTO) {
+        // Process the request and generate the response
 
-        List<Country> countries = countryService.getAllCountries();
-        // System.out.println(countries);
-
-        model.addAttribute("countries", countries);
-
+        // Example response
+        ResponseDTO response = countryService.findGdpPerCapitaByCountries(requestDTO.getCountries());
+        // System.out.println(response);
+        // System.out.println(requestDTO);
+        // Set the response properties based on the request data
         
-        return "dashboard";
+
+        return ResponseEntity.ok(response);
     }
-
-
+    
+    
 }

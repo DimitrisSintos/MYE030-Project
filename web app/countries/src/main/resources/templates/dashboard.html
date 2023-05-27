@@ -55,12 +55,8 @@
                             <div class="d-flex flex-row align-items-center mb-2">
                                 <h6>Select Countries</h6>
                             </div>
-                            <select multiple="multiple" id="countriesSelect" name="countriesSelect[]">
-                                <option value='elem_1'>elem 1</option>
-                                <option value='elem_2'>elem 2</option>
-                                <option value='elem_3'>elem 3</option>
-                                <option value='elem_4'>elem 4</option>
-                                <option value='elem_100'>elem 100</option>
+                            <select  multiple="multiple" id="countriesSelect" name="countriesSelect[]">
+                                <option th:each="country : ${countries}" th:value="${country.iso_code}" th:text="${country.display_name}"></option>
                             </select>
                             <div class="d-flex flex-row align-items-center mb-2">
                                 <h6>Select Fields</h6>

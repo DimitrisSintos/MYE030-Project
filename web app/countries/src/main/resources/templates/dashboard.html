@@ -74,31 +74,23 @@
                             </select>
                             <h6>Year Range Selector</h6>
                             <div class="my-row">
-                                <select class="form-control" id="min-year">
-                                    <!-- Replace the years with your desired range -->
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                </select>
+                                <input class="year-input" type="number" name="min-year" id="min-year">
                                 <span>-</span>
-                                <select class="form-control" id="max-year">
-                                    <!-- Replace the years with your desired range -->
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                </select>
+                                <input class="year-input" type="number" name="max-year" id="max-year">
                             </div>
                             <div class="my-row">
                                 <p>Aggregate Time</p>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline1">5 years</label>
+                                    <input type="radio" id="none" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="none">None</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline2">10 years</label>
+                                    <input type="radio" id="5" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="5">5 years</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="10" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="10">10 years</label>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +102,7 @@
                         </div>
                     </div>
                     <p  class="no-chart-paragraph">
-                        Create a new chart by clicking on the <i class="fa-solid fa-circle-plus add-btn-icon" onclick="addChart()"></i> button and then select it by clicking on its header.                                       
+                        Create a new chart by clicking on the <i class="fa-solid fa-circle-plus" onclick="addChart()"></i> button and then select it by clicking on its header.                                       
                     </p>
                 </div>
             </div>
@@ -119,7 +111,7 @@
               <label for="tab-2" class="tab-label">Settings</label>
               <div class="tab-content">
                 <p  class="no-chart-paragraph">
-                    Create a new chart by clicking on the <i class="fa-solid fa-circle-plus add-btn-icon" onclick="addChart()"></i> button and then select it by clicking on its header.                    
+                    Create a new chart by clicking on the <i class="fa-solid fa-circle-plus" onclick="addChart()"></i> button and then select it by clicking on its header.                    
                 </p>
                 <div id="chartSettings" class="data-source">
                     <h3>Chart Settings</h3>
@@ -203,7 +195,7 @@ class Chart {
         fields = [],
         showLegend = false,
         xRange = { min: null, max: null },
-        aggTime = "",
+        aggTime = "None",
         chartTitle = "",
         xTitle = "",
         yTitle = "",
@@ -288,134 +280,131 @@ class Chart {
     draw() {
         //set Title
         $('#'+this._id+'-title').text(this._chartTitle);
+        console.log("countries: ", this._countries);
+        console.log("fields: ", this._fields);
+        console.log("chartType: ", this._chartType);
+        console.log("xRange: ", this._xRange);
+        console.log("aggTime: ", this._aggTime);
+        console.log("showLegend: ", this._showLegend);
+        console.log("chartTitle: ", this._chartTitle);
+        console.log("xTitle: ", this._xTitle);
+        console.log("yTitle: ", this._yTitle);
+        return
+        // const chartData = this._chartType != 'ct-ring-num' ? this.getChartData() : this.getRingNumChartData();
+        // if(chartData == null ){
+        //     //clear chart
+        //     Plotly.react(this._id);
+        //     return;
+        // }
+        // const tracesData = chartData.traces;
+        // const rightAxisData = chartData.rightAxis;
+        // const tracesToDraw = [];
 
-        const chartData = this._chartType != 'ct-ring-num' ? this.getChartData() : this.getRingNumChartData();
-        if(chartData == null ){
-            //clear chart
-            Plotly.react(this._id);
-            return;
-        }
-        const tracesData = chartData.traces;
-        const rightAxisData = chartData.rightAxis;
-        const tracesToDraw = [];
 
+        // let dataYMin = null;
+        // let dataYMax = null;
+        // for (const key in tracesData) {
+        //     if (dataYMax === null || dataYMax < Math.max(...tracesData[key].y)) {
+        //         dataYMax = Math.max(...tracesData[key].y);
+        //     }
+        //     if (dataYMin === null || dataYMin > Math.min(...tracesData[key].y)) {
+        //         dataYMin = Math.min(...tracesData[key].y);
+        //     }
+        //     tracesToDraw.push({
+        //         x: tracesData[key].x,
+        //         y: tracesData[key].y,
+        //         name: this._traces[key].description,
+        //         type: 'scatter',
+        //         mode: 'lines',
+        //         line: {
+        //             width: 2
+        //         },
+        //     });
+        // }
+        // let yAxisTitle = Object.values(this._traces).reduce((accumulator, trace) => {
+        //     if (trace.unit && !accumulator.includes(trace.unit)) {
+        //         accumulator.push(trace.unit);
+        //     }
+        //         return accumulator;
+        // },[]).join(", ");
 
-        let dataYMin = null;
-        let dataYMax = null;
-        for (const key in tracesData) {
-            if (dataYMax === null || dataYMax < Math.max(...tracesData[key].y)) {
-                dataYMax = Math.max(...tracesData[key].y);
-            }
-            if (dataYMin === null || dataYMin > Math.min(...tracesData[key].y)) {
-                dataYMin = Math.min(...tracesData[key].y);
-            }
-            tracesToDraw.push({
-                x: tracesData[key].x,
-                y: tracesData[key].y,
-                name: this._traces[key].description,
-                type: 'scatter',
-                mode: 'lines',
-                line: {
-                    width: 2
-                },
-            });
-        }
-        let yAxisTitle = Object.values(this._traces).reduce((accumulator, trace) => {
-            if (trace.unit && !accumulator.includes(trace.unit)) {
-                accumulator.push(trace.unit);
-            }
-                return accumulator;
-        },[]).join(", ");
+        // let dataRightYMin = null;
+        // let dataRightYMax = null;
 
-        let dataRightYMin = null;
-        let dataRightYMax = null;
+        // for( const key in rightAxisData) {
+        //     if(dataRightYMax === null || dataRightYMax < Math.max(...rightAxisData[key].y)) {
+        //         dataRightYMax = Math.max(...rightAxisData[key].y);
+        //     }
+        //     if(dataRightYMin === null || dataRightYMin > Math.min(...rightAxisData[key].y)) {
+        //         dataRightYMin = Math.min(...rightAxisData[key].y);
+        //     }
+        //     tracesToDraw.push({
+        //         x: rightAxisData[key].x,
+        //         y: rightAxisData[key].y,
+        //         name: this._rightAxis[key].description,
+        //         type: 'scatter',
+        //         mode: 'lines',
+        //         line: {
+        //             width: 2
+        //         },
+        //         yaxis: 'y2'
+        //     });
+        // }
+        // let y2AxisTitle = Object.values(this._rightAxis).reduce((accumulator, trace) => {
+        //     if (trace.unit && !accumulator.includes(trace.unit)) {
+        //         accumulator.push(trace.unit);
+        //     }
+        //         return accumulator;
+        // },[]).join(", ");
 
-        for( const key in rightAxisData) {
-            if(dataRightYMax === null || dataRightYMax < Math.max(...rightAxisData[key].y)) {
-                dataRightYMax = Math.max(...rightAxisData[key].y);
-            }
-            if(dataRightYMin === null || dataRightYMin > Math.min(...rightAxisData[key].y)) {
-                dataRightYMin = Math.min(...rightAxisData[key].y);
-            }
-            tracesToDraw.push({
-                x: rightAxisData[key].x,
-                y: rightAxisData[key].y,
-                name: this._rightAxis[key].description,
-                type: 'scatter',
-                mode: 'lines',
-                line: {
-                    width: 2
-                },
-                yaxis: 'y2'
-            });
-        }
-        let y2AxisTitle = Object.values(this._rightAxis).reduce((accumulator, trace) => {
-            if (trace.unit && !accumulator.includes(trace.unit)) {
-                accumulator.push(trace.unit);
-            }
-                return accumulator;
-        },[]).join(", ");
-
-        let leftYRange = this.findRange(dataYMin, dataYMax, this._leftYMin, this._leftYMax);
-        let rightYRange = this.findRange(dataRightYMin, dataRightYMax, this._rightYMin, this._rightYMax);
+        // let leftYRange = this.findRange(dataYMin, dataYMax, this._leftYMin, this._leftYMax);
+        // let rightYRange = this.findRange(dataRightYMin, dataRightYMax, this._rightYMin, this._rightYMax);
         
-        const layout = {
-            margin: {
-                l: 100,
-                r: 100,
-                b: 70,
-                t: 50,
-                pad: 4
-            },
-            xaxis: {
-                title: this._chartType == 'ct-ring-num' ? 'Ring Number' : this._chartType == 'ct-time' ? 'Time' : 'Chainage',
-            },
-            yaxis: {
-                title: yAxisTitle,
-                exponentformat: "none",
-                autorange: leftYRange == "autorange" ? true : false,
-                range: leftYRange == "autorange" ? null : [leftYRange[0], leftYRange[1]],
-            },
-            yaxis2: {
-                title: y2AxisTitle,
-                exponentformat: "none",
-                overlaying: 'y',
-                side: 'right',
-                showgrid: false,
-                autorange: rightYRange == "autorange" ? true : false,
-                range: rightYRange == "autorange" ? null : [rightYRange[0], rightYRange[1]],
-            }, 
-            showlegend: this._showLegend,
-            legend: {
-                x: 1.1,
-                y: 0.5,
-                traceorder: 'normal',
-                font: {
-                    family: 'sans-serif',
-                    size: 12,
-                    color: '#000'
-                },
-                bgcolor: '#E2E2E2',
-                bordercolor: '#FFFFFF',
-                borderwidth: 2
-            } 
+        // const layout = {
+        //     margin: {
+        //         l: 100,
+        //         r: 100,
+        //         b: 70,
+        //         t: 50,
+        //         pad: 4
+        //     },
+        //     xaxis: {
+        //         title: this._chartType == 'ct-ring-num' ? 'Ring Number' : this._chartType == 'ct-time' ? 'Time' : 'Chainage',
+        //     },
+        //     yaxis: {
+        //         title: yAxisTitle,
+        //         exponentformat: "none",
+        //         autorange: leftYRange == "autorange" ? true : false,
+        //         range: leftYRange == "autorange" ? null : [leftYRange[0], leftYRange[1]],
+        //     },
+        //     yaxis2: {
+        //         title: y2AxisTitle,
+        //         exponentformat: "none",
+        //         overlaying: 'y',
+        //         side: 'right',
+        //         showgrid: false,
+        //         autorange: rightYRange == "autorange" ? true : false,
+        //         range: rightYRange == "autorange" ? null : [rightYRange[0], rightYRange[1]],
+        //     }, 
+        //     showlegend: this._showLegend,
+        //     legend: {
+        //         x: 1.1,
+        //         y: 0.5,
+        //         traceorder: 'normal',
+        //         font: {
+        //             family: 'sans-serif',
+        //             size: 12,
+        //             color: '#000'
+        //         },
+        //         bgcolor: '#E2E2E2',
+        //         bordercolor: '#FFFFFF',
+        //         borderwidth: 2
+        //     } 
             
-        };
-        Plotly.react(this._id, tracesToDraw, layout);
+        // };
+        // Plotly.react(this._id, tracesToDraw, layout);
         
         
-    }
-
-    findRange(yMin,yMax, userYmin, userYmax ){
-        if ( userYmin == null && userYmax == null) {
-            return "autorange";
-        }else if (userYmin != null && userYmax != null){
-            return [userYmin, userYmax];
-        }else if (userYmin != null && userYmax == null){
-            return [userYmin, yMax];
-        }else if (userYmin == null && userYmax != null){
-            return [yMin, userYmax];
-        }
     }
 
     toggleLegend(){
@@ -456,68 +445,7 @@ class Chart {
         });
         return chartData;
     }
-    buildAggTableFields(operation, table_field) {
-        let aggTableField = '';
-        switch (operation.toLowerCase()) {
-            case 'min':
-                aggTableField = `MIN(${table_field})`;
-                break;
-            case 'max':
-                aggTableField = `MAX(${table_field})`;
-                break;
-            case 'avg':
-                aggTableField = `AVG(${table_field})`;
-                break;
-            default:
-                aggTableField = 'Invalid operation';
-        }
-        return aggTableField;
-    }
-    getRingNumChartData(){
-        const traces_table_fields = {};
-        const agg_traces_table_fields = {};
-
-        const righAxis_table_fields = {};
-        const agg_righAxis_table_fields = {};
-        for (const key in this._traces) {
-            //chech if this.rightAxis has as key the same key as this._traces
-            if (this.rightAxis[key]) {
-                if(this._rightAxis[key].agg != "none"){
-                    agg_righAxis_table_fields[key] =  this.buildAggTableFields(this._rightAxis[key].agg, this._rightAxis[key].table_field);
-                }else{
-                    righAxis_table_fields[key] =  this._rightAxis[key].table_field;
-                }
-            }else{
-                if(this._traces[key].agg != "none"){
-                    agg_traces_table_fields[key] =  this.buildAggTableFields(this._traces[key].agg, this._traces[key].table_field);
-                }else{
-                    traces_table_fields[key] =  this._traces[key].table_field;
-                }
-            }
-        }
-        let chartData = {};
-        $.ajax({
-            url: "/tbm/get-ring-num-traces-data",
-            type: "GET",
-            async: false,
-            data: {
-                tbm: this.tbm,
-                x_range : JSON.stringify(this._xRange),
-                traces_table_fields: JSON.stringify(traces_table_fields),
-                agg_traces_table_fields: JSON.stringify(agg_traces_table_fields),
-                righAxis_table_fields: JSON.stringify(righAxis_table_fields),
-                agg_righAxis_table_fields: JSON.stringify(agg_righAxis_table_fields),
-            }
-        }).done(function(response){
-            chartData = response.data;
-
-        }).fail(function(err){
-            console.log("err: ",err);
-            chartData = null;
-        });
-
-        return chartData;
-    }
+    
 }
 
 function addChart(){
@@ -565,6 +493,30 @@ function toggleSidebar(){
     
 }
 function updateChart(){
+    // id,
+    //     chartType = "lines+markers",
+    //     countries = [],
+    //     fields = [],
+    //     showLegend = false,
+    //     xRange = { min: null, max: null },
+    //     aggTime = "",
+    //     chartTitle = "",
+    //     xTitle = "",
+    //     yTitle = "",
+    // $('#countriesSelect').multiSelect();
+    // $('#fieldsSelect').multiSelect();
+    charts[selectedChart].chartType = $("#chartType").val();
+    console.log($("#countriesSelect").val());
+    charts[selectedChart].countries = $("#countriesSelect").val();
+    charts[selectedChart].fields = $("#fieldsSelect").val();
+    charts[selectedChart].xRange = { min: $("#min-year").val(), max: $("#max-year").val() };
+    let aggTime = $('input[name="customRadioInline1"]:checked').attr('id');
+    console.log("aggTime: ",aggTime);
+    charts[selectedChart].aggTime = aggTime != undefined ? aggTime : "None";
+    charts[selectedChart].chartTitle = $("#chartTitle").val();
+    charts[selectedChart].xTitle = $("#xTitle").val();
+    charts[selectedChart].yTitle = $("#yTitle").val();
+    charts[selectedChart].draw();
     console.log("chart updated!");
 }
 function deleteChart(){
@@ -588,10 +540,7 @@ function setChartToDelete(event,chartId){
 function selectChart(chartId){
     if ( event.target.closest(".delete-chart-btn") ) return;
     selectedChart = "chart"+chartId;
-    //selectedSensors = {};
-    //selectedRightAxisSensors = {};
-    //clear search box
-    $('.js-searchBox-input').val('');
+
 
     //make the chart_container_+chartId child div with class= chart-header background color = #f5f5f5
     // $("#chart_container_"+chartId+" .chart-header").css("background-color", "green");
@@ -609,10 +558,8 @@ function selectChart(chartId){
     $("#chartTitle").val(charts[selectedChart].chartTitle);
     console.log("charts[selectedChart].chartType: ",charts[selectedChart].chartType);
     $("#chartType").val(charts[selectedChart].chartType);
-    $("#leftYMin").val(charts[selectedChart].leftYMin);
-    $("#leftYMax").val(charts[selectedChart].leftYMax);
-    $("#rightYMin").val(charts[selectedChart].rightYMin);
-    $("#rightYMax").val(charts[selectedChart].rightYMax);
+    $("#xTitle").val(charts[selectedChart].xTitle);
+    $("#yTitle").val(charts[selectedChart].yTitle);
 
 }
 

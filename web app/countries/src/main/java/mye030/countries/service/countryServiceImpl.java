@@ -39,6 +39,10 @@ public class countryServiceImpl implements countryService {
         // get the fields from the request
         Map<String, List<String>> fields = request.getFields();
 
+        // get the min and max years from the request
+        Integer minYear = Integer.valueOf(request.getYears().getMin());
+        Integer maxYear = Integer.valueOf(request.getYears().getMax());
+
         // keep track of all the individual country-fields sets
         Map<String, Map<String, Object>> results = new HashMap<>();
 
@@ -63,7 +67,7 @@ public class countryServiceImpl implements countryService {
         }
 
         
-        ResponseDTO response = ResponseDTO.mapToResponseDTO(results);
+        ResponseDTO response = ResponseDTO.mapToResponseDTO(results, minYear, maxYear);
         return response;
 
 

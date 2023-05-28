@@ -30,6 +30,7 @@ public class metricsRepositoryImpl implements metricsRepository {
             query = "SELECT * FROM " + tableName + " WHERE iso_code in (" + countryIso + ") AND field in ('" + String.join("','", fieldNames) + "');";
         }
 
+        // TODO: treat the 2 special tables differently
         
         return jdbcTemplate.queryForList(query);
     }

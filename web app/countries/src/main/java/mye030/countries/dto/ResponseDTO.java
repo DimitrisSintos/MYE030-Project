@@ -12,7 +12,7 @@ public class ResponseDTO {
 
 
     // mapper method to turn a List<Map<String, Object>> into a ResponseDTO
-    public static ResponseDTO mapToResponseDTO(Map<String, Map<String, Object>> results) {
+    public static ResponseDTO mapToResponseDTO(Map<String, Map<String, Object>> results, int minYear, int maxYear) {
         if (results.isEmpty()) {
             // Handle empty result case if needed
             return null;
@@ -57,7 +57,7 @@ public class ResponseDTO {
                             yValues = new ArrayList<>();
                         }
 
-                        if (year.matches("\\d{4}")) {
+                        if (year.matches("\\d{4}") && isInRange(year, minYear, maxYear)) {
                             xValues.add(year);
 
                             if (value == null) {
@@ -82,6 +82,11 @@ public class ResponseDTO {
 
         responseDTO.setData(data);
         return responseDTO;
+    }
+
+    private static boolean isInRange(String year, int start, int end) {
+        int yearInt = Integer.parseInt(year);
+        return yearInt >= start && yearInt <= end;
     }
 
 

@@ -23,13 +23,13 @@ public class ApiController {
     private countryService countryService;
 
     @PostMapping("/getTimeseriesData")
-    public ResponseEntity<ResponseDTO> getTimeseriesData(@RequestBody RequestDTO requestDTO) {
+    public ResponseEntity<ResponseDTO> getTimeseriesData(@RequestBody RequestDTO request) {
         // Process the request and generate the response
 
         // Example response
-        ResponseDTO response = countryService.findGdpPerCapitaByCountries(requestDTO.getCountries());
-        System.out.println(requestDTO);
-        // System.out.println(response);
+        ResponseDTO response = countryService.processRequest(request);
+        System.out.println("request: " + request);
+        System.out.println("response: " + response);
         // Set the response properties based on the request data
         
 

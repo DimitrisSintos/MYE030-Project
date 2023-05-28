@@ -12,57 +12,71 @@ public class ResponseDTO {
 
 
     // mapper method to turn a List<Map<String, Object>> into a ResponseDTO
-    public static ResponseDTO mapToResponseDTO(List<Map<String, Object>> result) {
-        if (result.isEmpty()) {
+    public static ResponseDTO mapToResponseDTO(Map<String, Map<String, Object>> results) {
+        if (results.isEmpty()) {
             // Handle empty result case if needed
             return null;
         }
+
         ResponseDTO responseDTO = new ResponseDTO();
         Map<String, Map<String, FieldDTO>> data = new HashMap<>();
 
 
-        
-        for (Map<String, Object> row : result) {
-            String isoCode = row.get("iso_code").toString();
-            
+        // go through each entry of the results map
+        for (Map.Entry<String, Map<String, Object>> country : results.entrySet()) {
+            // extract the metric name and the corresponding results
+            String isoCode = country.getKey();
+            Map<String, Object> countryData = country.getValue();
+
             // add new entry for the current iso_code
             if (!data.containsKey(isoCode)) {
                 data.put(isoCode, new HashMap<>());
             }
 
-            FieldDTO fieldDTO = new FieldDTO();
-            for (Map.Entry<String, Object> entry : row.entrySet()) {
-                String year = entry.getKey();
-                Object value = entry.getValue();
+            
+            for (Map.Entry<String, Object> entry : countryData.entrySet()) {
+                Object metrics = entry.getValue();
 
-                if (year.matches("\\d{4}")) {
-                    String fieldName = year;
+                
+                Map<String, Object> metricsMap = (Map<String, Object>) metrics;
+                for (Map.Entry<String, Object> metric : metricsMap.entrySet()) {
+                    String metricName = metric.getKey();
+                    Object row = metric.getValue();
+                    
+                    FieldDTO fieldDTO = new FieldDTO();
+                    Map<String, Object> rowMap = (Map<String, Object>) row;
+                    for (Map.Entry<String, Object> rowEntry : rowMap.entrySet()) {
+                        String year = rowEntry.getKey();
+                        Object value = rowEntry.getValue();
 
-                    List<String> xValues = fieldDTO.getX();
-                    List<String> yValues = fieldDTO.getY();
+                        List<String> xValues = fieldDTO.getX();
+                        List<String> yValues = fieldDTO.getY();
 
-                    if (xValues == null || yValues == null) {
-                        xValues = new ArrayList<>();
-                        yValues = new ArrayList<>();
+                        if (xValues == null || yValues == null) {
+                            xValues = new ArrayList<>();
+                            yValues = new ArrayList<>();
+                        }
+
+                        if (year.matches("\\d{4}")) {
+                            xValues.add(year);
+
+                            if (value == null) {
+                                yValues.add("null");
+                            } 
+                            // if data for a year is not available, the value is null
+                            else {
+                                yValues.add(value.toString());
+                            }
+                        }
+
+                        
+                        fieldDTO.setX(xValues);
+                        fieldDTO.setY(yValues);
                     }
 
-                    xValues.add(fieldName);
 
-                    if (value == null) {
-                        yValues.add("null");
-                    } 
-                    // if data for a year is not available, the value is null
-                    else {
-                        yValues.add(value.toString());
-                    }
-
-                    fieldDTO.setX(xValues);
-                    fieldDTO.setY(yValues);
-
+                    data.get(isoCode).put(metricName, fieldDTO);
                 }
-
-            data.get(isoCode).put("gdp_capita", fieldDTO);
-
             }
         }
 

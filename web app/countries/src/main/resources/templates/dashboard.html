@@ -46,7 +46,7 @@
                                 <label for="chartType">Chart Type</label>
                                 <select class="form-control" name="chartType" id="chartType">
                                     <option value="lines+markers">Timelines</option>
-                                    <option value="bars">Bar Charts</option>
+                                    <option value="bar">Bar Charts</option>
                                     <option value="markers">Scatter Plot</option>
                                 </select>
                             </div>
@@ -63,11 +63,44 @@
                                 <h6>Select Fields</h6>
                             </div>
                             <select multiple="multiple" id="fieldsSelect" name="fieldsSelect[]">
-                                <option value='elem_1'>elem 1</option>
-                                <option value='elem_2'>elem 2</option>
-                                <option value='elem_3'>elem 3</option>
-                                <option value='elem_4'>elem 4</option>
-                                <option value='elem_100'>elem 100</option>
+                                <option value="gdp_total$gdp_total">Total GDP</option>
+                                <option value='gdp_capita$gdp_capita'>GDP per capita</option>
+                                <option value="gni_capita$gni_capita">GNI per capita</option>
+                                <option value="gni_male$gni_male">Male GNI</option>
+                                <option value="gni_female$gni_female">Female GNI</option>
+                                <option value="domestic_credits$domestic_credits">Domestic credits</option>
+                                <option value="income_indexes$income_indexes">Income indexes</option>
+                                <option value="labour_shares$labour_shares">Labour shares</option>
+                                <option value="gross_fixed_capital_formation$gross_fixed_capital_formation">Gross fixed capital formation (GFCF)</option>
+                                <option value="vital_statistics$crude_birth_rate">Crude birth rate</option>
+                                <option value="vital_statistics$rate_natural_increase">Natural increase rate</option>
+                                <option value="vital_statistics$growth_rate">Growth rate</option>
+                                <option value="vital_statistics$net_migration">Net migration</option>
+                                <option value="vital_statistics$crude_death_rate">Crude death rate</option>
+                                <option value="fertilities$sex_ratio_at_birth">Sex ratio at birth</option>
+                                <option value="fertilities$total_fertility_rate">Total fertility rate</option>
+                                <option value="fertilities$gross_reproduction_rate">Gross reproduction</option>
+                                <option value="fertilities$fertility_rate_15_19">Fertility rate (15-19)</option>
+                                <option value="fertilities$fertility_rate_20_24">Fertility rate (20-24)</option>
+                                <option value="fertilities$fertility_rate_25_29">Fertility rate (25-29)</option>
+                                <option value="fertilities$fertility_rate_30_34">Fertility rate (30-34)</option>
+                                <option value="fertilities$fertility_rate_35_39">Fertility rate (35-39)</option>
+                                <option value="fertilities$fertility_rate_40_44">Fertility rate (40-44)</option>
+                                <option value="fertilities$fertility_rate_45_49">Fertility rate (45-49)</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_under5">Mortality rate under 5</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_1to4">Mortality rate 1 to 4</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_under5_male">Mortality rate under 5 male</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_1to4_male">Mortality rate 1 to 4 male</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_under5_female">Mortality rate under 5 female</option>
+                                <option value="mortality_life_expectancy_statistics$mortality_rate_1to4_female">Mortality rate 1 to 4 female</option>
+                                <option value="mortality_life_expectancy_statistics$infant_mortality">Infant mortality</option>
+                                <option value="mortality_life_expectancy_statistics$infant_mortality_male">Infant mortality male</option>
+                                <option value="mortality_life_expectancy_statistics$infant_mortality_female">Infant mortality female</option>
+                                <option value="mortality_life_expectancy_statistics$life_expectancy">Life expectancy</option>
+                                <option value="mortality_life_expectancy_statistics$life_expectancy_male">Life expectancy male</option>
+                                <option value="mortality_life_expectancy_statistics$life_expectancy_female">Life expectancy female</option>
+
+
                             </select>
                             <h6>Year Range Selector</h6>
                             <div class="my-row">
@@ -163,7 +196,10 @@
 </body>
 </html>
 
-<script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+const countries = /*[[${countries}]]*/ [];
+
 let sidebarOpen = false;
 let chartsSequence = 0;
 let chartsIds = [];
@@ -256,11 +292,7 @@ class Chart {
     constructor(
         id,
         chartType = "lines+markers",
-        countries = [],
-        fields = [],
         showLegend = false,
-        xRange = { min: null, max: null },
-        aggTime = "none",
         chartTitle = "",
         xTitle = "",
         yTitle = "",
@@ -268,11 +300,7 @@ class Chart {
     ) {
         this._id = id;
         this._chartType = chartType;
-        this._countries = countries;
-        this._fields = fields;
         this._showLegend = showLegend;
-        this._xRange = xRange;
-        this._aggTime = aggTime;
         this._chartTitle = chartTitle;
         this._xTitle = xTitle;
         this._yTitle = yTitle;
@@ -284,21 +312,14 @@ class Chart {
     get chartType() {
         return this._chartType;
     }
-    get countries() {
-        return this._countries;
-    }
-    get fields() {
-        return this._fields;
-    }
+    
     get showLegend() {
         return this._showLegend;
     }
     get xRange() {
         return this._xRange;
     }
-    get aggTime() {
-        return this._aggTime;
-    }
+    
     get chartTitle() {
         return this._chartTitle;
     }
@@ -315,20 +336,9 @@ class Chart {
     set chartType(newChartType) {
         this._chartType = newChartType;
     }
-    set countries(newCountries) {
-        this._countries = newCountries;
-    }
-    set fields(newFields) {
-        this._fields = newFields;
-    }
+    
     set showLegend(newShowLegend) {
         this._showLegend = newShowLegend;
-    }
-    set xRange(newXRange) {
-        this._xRange = newXRange;
-    }
-    set aggTime(newAggTime) {
-        this._aggTime = newAggTime;
     }
     set chartTitle(newChartTitle) {
         this._chartTitle = newChartTitle;
@@ -348,126 +358,73 @@ class Chart {
         console.log("countries: ", this._countries);
         console.log("fields: ", this._fields);
         console.log("chartType: ", this._chartType);
-        console.log("xRange: ", this._xRange);
-        console.log("aggTime: ", this._aggTime);
-        console.log("showLegend: ", this._showLegend);
-        console.log("chartTitle: ", this._chartTitle);
-        console.log("xTitle: ", this._xTitle);
-        console.log("yTitle: ", this._yTitle);
-        const chartData = this._chartType === 'lines+markers' ? this.getTimeSeriesData() : {};
-        return
-        // if(chartData == null ){
-        //     //clear chart
-        //     Plotly.react(this._id);
-        //     return;
-        // }
-        // const tracesData = chartData.traces;
-        // const rightAxisData = chartData.rightAxis;
-        // const tracesToDraw = [];
+        // Call the appropriate getData function based on chart type
+        let chartData;
+        if (this._chartType === "lines+markers" || this._chartType === "bar") {
+            chartData = this.getTimeSeriesData();
+        }else if (this._chartType === "scatter") {
+            chartData = this.getScatterData();
+        } else {
+            // Handle unsupported chart types
+            console.error("Unsupported chart type: " + this._chartType);
+            return;
+        }
 
+        if(chartData == null ){
+            //clear chart
+            Plotly.react(this._id);
+            return;
+        }
+        const tracesToDraw = [];
 
-        // let dataYMin = null;
-        // let dataYMax = null;
-        // for (const key in tracesData) {
-        //     if (dataYMax === null || dataYMax < Math.max(...tracesData[key].y)) {
-        //         dataYMax = Math.max(...tracesData[key].y);
-        //     }
-        //     if (dataYMin === null || dataYMin > Math.min(...tracesData[key].y)) {
-        //         dataYMin = Math.min(...tracesData[key].y);
-        //     }
-        //     tracesToDraw.push({
-        //         x: tracesData[key].x,
-        //         y: tracesData[key].y,
-        //         name: this._traces[key].description,
-        //         type: 'scatter',
-        //         mode: 'lines',
-        //         line: {
-        //             width: 2
-        //         },
-        //     });
-        // }
-        // let yAxisTitle = Object.values(this._traces).reduce((accumulator, trace) => {
-        //     if (trace.unit && !accumulator.includes(trace.unit)) {
-        //         accumulator.push(trace.unit);
-        //     }
-        //         return accumulator;
-        // },[]).join(", ");
+        for( let countryCode in chartData){
+            console.log("countryCode: ", countryCode);
+            for(let field in chartData[countryCode]){
+                const trace = {
+                    x: chartData[countryCode][field].x,
+                    y: chartData[countryCode][field].y,
+                    name: this._countries[countryCode] + " " + field,
+                    type: this._chartType,
+                    // mode: 'lines+markers',
+                }
+                tracesToDraw.push(trace);
+            }
+        }
 
-        // let dataRightYMin = null;
-        // let dataRightYMax = null;
-
-        // for( const key in rightAxisData) {
-        //     if(dataRightYMax === null || dataRightYMax < Math.max(...rightAxisData[key].y)) {
-        //         dataRightYMax = Math.max(...rightAxisData[key].y);
-        //     }
-        //     if(dataRightYMin === null || dataRightYMin > Math.min(...rightAxisData[key].y)) {
-        //         dataRightYMin = Math.min(...rightAxisData[key].y);
-        //     }
-        //     tracesToDraw.push({
-        //         x: rightAxisData[key].x,
-        //         y: rightAxisData[key].y,
-        //         name: this._rightAxis[key].description,
-        //         type: 'scatter',
-        //         mode: 'lines',
-        //         line: {
-        //             width: 2
-        //         },
-        //         yaxis: 'y2'
-        //     });
-        // }
-        // let y2AxisTitle = Object.values(this._rightAxis).reduce((accumulator, trace) => {
-        //     if (trace.unit && !accumulator.includes(trace.unit)) {
-        //         accumulator.push(trace.unit);
-        //     }
-        //         return accumulator;
-        // },[]).join(", ");
-
-        // let leftYRange = this.findRange(dataYMin, dataYMax, this._leftYMin, this._leftYMax);
-        // let rightYRange = this.findRange(dataRightYMin, dataRightYMax, this._rightYMin, this._rightYMax);
         
-        // const layout = {
-        //     margin: {
-        //         l: 100,
-        //         r: 100,
-        //         b: 70,
-        //         t: 50,
-        //         pad: 4
-        //     },
-        //     xaxis: {
-        //         title: this._chartType == 'ct-ring-num' ? 'Ring Number' : this._chartType == 'ct-time' ? 'Time' : 'Chainage',
-        //     },
-        //     yaxis: {
-        //         title: yAxisTitle,
-        //         exponentformat: "none",
-        //         autorange: leftYRange == "autorange" ? true : false,
-        //         range: leftYRange == "autorange" ? null : [leftYRange[0], leftYRange[1]],
-        //     },
-        //     yaxis2: {
-        //         title: y2AxisTitle,
-        //         exponentformat: "none",
-        //         overlaying: 'y',
-        //         side: 'right',
-        //         showgrid: false,
-        //         autorange: rightYRange == "autorange" ? true : false,
-        //         range: rightYRange == "autorange" ? null : [rightYRange[0], rightYRange[1]],
-        //     }, 
-        //     showlegend: this._showLegend,
-        //     legend: {
-        //         x: 1.1,
-        //         y: 0.5,
-        //         traceorder: 'normal',
-        //         font: {
-        //             family: 'sans-serif',
-        //             size: 12,
-        //             color: '#000'
-        //         },
-        //         bgcolor: '#E2E2E2',
-        //         bordercolor: '#FFFFFF',
-        //         borderwidth: 2
-        //     } 
+        const layout = {
+            margin: {
+                l: 100,
+                r: 100,
+                b: 70,
+                t: 50,
+                pad: 4
+            },
+            xaxis: {
+                title: this._xTitle,
+            },
+            yaxis: {
+                title: this._yTitle,
+                // exponentformat: "none",
+                autorange: true,
+            }, 
+            showlegend: this._showLegend,
+            legend: {
+                x: 1.1,
+                y: 0.5,
+                traceorder: 'normal',
+                font: {
+                    family: 'sans-serif',
+                    size: 12,
+                    color: '#000'
+                },
+                bgcolor: '#E2E2E2',
+                bordercolor: '#FFFFFF',
+                borderwidth: 2
+            } 
             
-        // };
-        // Plotly.react(this._id, tracesToDraw, layout);
+        };
+        Plotly.react(this._id, tracesToDraw, layout);
         
         
     }
@@ -479,9 +436,67 @@ class Chart {
         });
     }
     getTimeSeriesData(){
+        console.error("getTimeSeriesData not implemented");
+        return null;        
+    }
+    
+}
+
+class TimeSeries extends Chart{
+    constructor(id,chartType, showLegend, chartTitle, xTitle, yTitle, countries, fields, xRange, aggTime){
+        super(id,chartType, showLegend, chartTitle, xTitle, yTitle);
+        this._countries = countries;
+        this._fields = fields;
+        this._xRange = xRange;
+        this._aggTime = aggTime;
+    }
+    get countries() {
+        return this._countries;
+    }
+    get fields() {
+        return this._fields;
+    }
+    get xRange() {
+        return this._xRange;
+    }
+    get aggTime() {
+        return this._aggTime;
+    }
+    // Setters
+    set countries(newCountries) {
+        this._countries = newCountries;
+    }
+    set fields(newFields) {
+        this._fields = newFields;
+    }
+    set xRange(newXRange) {
+        this._xRange = newXRange;
+    }
+    set aggTime(newAggTime) {
+        this._aggTime = newAggTime;
+    }
+    // Methods
+    getTimeSeriesData(){
+        let myFields = {};
+        for( let field of this._fields){
+            let tableName = field.split("$")[0];
+            let fieldName = field.split("$")[1];
+            if( tableName === fieldName){
+                myFields[tableName] = [];
+            }
+            else{
+                if( tableName in myFields){
+                    myFields[tableName].push(fieldName);
+                }else{
+                    myFields[tableName] = [fieldName];
+                }
+            }
+        }
+        console.log("myFields: ", myFields);
+        //TODO: Dwse k to aggTime an to chartsType einai bar
         let data= {
-            "countries": this._countries,
-            "fields": this._fields,
+            "countries": Object.keys(this._countries),
+            "fields": this._fields,//TODO: change to myFields
             "years": this._xRange,
         };
         console.log("data: ",data);
@@ -501,14 +516,14 @@ class Chart {
         });
         return chartData;
     }
-    
 }
 
 function addChart(){
     console.log("add chart");
     let ID = chartsSequence;
     chartsIds.push("chart"+ID);
-    charts["chart"+ID] = new Chart("chart"+ID);
+    // id,chartType, showLegend, chartTitle, xTitle, yTitle, countries, fields, xRange, aggTime
+    charts["chart"+ID] = new TimeSeries("chart"+ID,"lines+markers",false,"","","",{},[],{},"none");
     chartsSequence++;
     $('.charts-container').append(`
         <div id="chart_container_${ID}" class="chart-container ${sidebarOpen? "chart-container-move-left":""}">
@@ -549,19 +564,26 @@ function toggleSidebar(){
     
 }
 function updateChart(){
-    
-    charts[selectedChart].chartType = $("#chartType").val();
-    console.log($("#countriesSelect").val());
-    charts[selectedChart].countries = $("#countriesSelect").val();
-    charts[selectedChart].fields = $("#fieldsSelect").val();
-    charts[selectedChart].xRange = { min: $("#min-year").val(), max: $("#max-year").val() };
-    let aggTime = $('input[name="customRadioInline1"]:checked').attr('id');
-    console.log("aggTime: ",aggTime);
-    charts[selectedChart].aggTime = aggTime != undefined ? aggTime : "None";
-    charts[selectedChart].chartTitle = $("#chartTitle").val();
-    charts[selectedChart].xTitle = $("#xTitle").val();
-    charts[selectedChart].yTitle = $("#yTitle").val();
-    charts[selectedChart].draw();
+    let chartType = $("#chartType").val();
+    if( chartType === "lines+markers" || chartType === "bar"){
+        let counties = $("#countriesSelect").val().reduce(function(result, value, index, arr){
+            result[value] = $("#countriesSelect option[value='"+value+"']").text();
+            return result;
+        }, {});
+        let fields = $("#fieldsSelect").val();
+        let xRange = { min: $("#min-year").val(), max: $("#max-year").val() };
+        let aggTime = "none";
+        if ( chartType === "bar"){
+            aggTime = $('input[name="customRadioInline1"]:checked').attr('id');
+        }
+        let chartTitle = $("#chartTitle").val();
+        let xTitle = $("#xTitle").val();
+        let yTitle = $("#yTitle").val();
+        delete charts[selectedChart];
+
+        charts[selectedChart] = new TimeSeries(selectedChart,chartType,false, chartTitle, xTitle, yTitle, counties, fields, xRange, aggTime);
+        charts[selectedChart].draw();
+    }
     console.log("chart updated!");
 }
 function deleteChart(){
@@ -599,30 +621,23 @@ function selectChart(chartId){
     $(".no-chart-paragraph").hide();
     $(".data-source").css("display", "flex");
     
-
-    // charts[selectedChart].chartType = $("#chartType").val();
-    // console.log($("#countriesSelect").val());
-    // charts[selectedChart].countries = $("#countriesSelect").val();
-    // charts[selectedChart].fields = $("#fieldsSelect").val();
-    // charts[selectedChart].xRange = { min: $("#min-year").val(), max: $("#max-year").val() };
-    // let aggTime = $('input[name="customRadioInline1"]:checked').attr('id');
-    // console.log("aggTime: ",aggTime);
-    // charts[selectedChart].aggTime = aggTime != undefined ? aggTime : "None";
-    // charts[selectedChart].chartTitle = $("#chartTitle").val();
-    // charts[selectedChart].xTitle = $("#xTitle").val();
-    // charts[selectedChart].yTitle = $("#yTitle").val();
     //fetch chart settings
     $("#chartTitle").val(charts[selectedChart].chartTitle);
     $("#xTitle").val(charts[selectedChart].xTitle);
     $("#yTitle").val(charts[selectedChart].yTitle);
-    $("#chartType").val(charts[selectedChart].chartType);
-    $("#countriesSelect").multiSelect('deselect_all');
-    $("#countriesSelect").multiSelect('select', charts[selectedChart].countries);
-    $("#fieldsSelect").multiSelect('deselect_all');
-    $("#fieldsSelect").multiSelect('select', charts[selectedChart].fields);
-    $("#min-year").val(charts[selectedChart].xRange.min);
-    $("#max-year").val(charts[selectedChart].xRange.max);
-    $("#"+charts[selectedChart].aggTime).prop("checked", true);
+    let chartType = charts[selectedChart].chartType;
+    $("#chartType").val(chartType);
+    if(chartType === "lines+markers" || chartType === "bar"){
+        $("#countriesSelect").multiSelect('deselect_all');
+        $("#countriesSelect").multiSelect('select', Object.keys(charts[selectedChart].countries));
+        $("#fieldsSelect").multiSelect('deselect_all');
+        $("#fieldsSelect").multiSelect('select', charts[selectedChart].fields);
+        $("#min-year").val("");
+        $("#min-year").val(charts[selectedChart].xRange.min);
+        $("#max-year").val("");
+        $("#max-year").val(charts[selectedChart].xRange.max);
+        $("#"+charts[selectedChart].aggTime).prop("checked", true);
+    }
     
 }
 function moveChart(move, chartContainerID){
@@ -634,6 +649,23 @@ function moveChart(move, chartContainerID){
     }
 }
 
+function toggleLegend(Id){
+    event.stopPropagation();
+    let chartId = "chart"+Id;
+    let chartsContainer = "chart_container_"+Id;
+    if(!charts[chartId].showLegend){
+        $("#"+chartsContainer+" .toggle-legend-btn").css("color", "#fff");
+        $("#"+chartsContainer+" .toggle-legend-btn").attr("title", "Hide Legend");
+        charts[chartId].showLegend = true;
+        charts[chartId].toggleLegend();
+    }else{
+        $("#"+chartsContainer+" .toggle-legend-btn").css("color", "#6c757d");
+        $("#"+chartsContainer+" .toggle-legend-btn").attr("title", "Show Legend");
+        charts[chartId].showLegend = false;
+        charts[chartId].toggleLegend();
+    }
+}
 
+ /*]]>*/
 </script>
 

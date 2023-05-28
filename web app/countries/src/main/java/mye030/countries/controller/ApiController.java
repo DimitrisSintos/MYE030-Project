@@ -26,11 +26,7 @@ public class ApiController {
     public ResponseEntity<ResponseDTO> getTimeseriesData(@RequestBody RequestDTO request) {
         // Process the request and generate the response
 
-        // Example response
         ResponseDTO response = countryService.processRequest(request);
-        System.out.println("request: " + request);
-        System.out.println("response: " + response);
-        // Set the response properties based on the request data
         
 
         return ResponseEntity.ok(response);

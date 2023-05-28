@@ -50,21 +50,18 @@ public class countryServiceImpl implements countryService {
             // go through every field (metric) in the request
             for (String tableName: fields.keySet()) {
 
-                System.out.println("tableName: " + tableName);
                 // get all the field (metric) names for the specific table
                 List<String> fieldNames = fields.get(tableName);
 
                 // get the data for the current country and metric
                 Map<String, Map<String, Object>> data = findDataForCountry(countryIso, fieldNames, tableName);
 
-                System.out.println("data: " + data);
 
                 // add the data for the current countryIsoCode to the results
                 results.get(countryIso).put(tableName, data);
             }
         }
 
-        System.out.println("results: " + results);
         
         ResponseDTO response = ResponseDTO.mapToResponseDTO(results);
         return response;

@@ -18,7 +18,7 @@ def create_fetility_table(connection,countries_iso2_dict):
             f"""CREATE TABLE IF NOT EXISTS fertilities (
                 id serial,
                 iso_code integer,
-                range varchar(50),
+                field varchar(50),
                 {', '.join([f'"{i}" numeric' for i in range(min_year, max_year+1)])},
                 PRIMARY KEY(id),
                 FOREIGN KEY(iso_code)
@@ -38,7 +38,7 @@ def create_fetility_table(connection,countries_iso2_dict):
         ranges = infile_df.columns[3:]
         serial_id = 1
 
-        outfile_df = pd.DataFrame(columns=['serial_id','iso_code', 'range', *range(min_year, max_year+1)])
+        outfile_df = pd.DataFrame(columns=['serial_id','iso_code', 'field', *range(min_year, max_year+1)])
         with open('../Datasets/international-data/age_specific_fertility_rates_updated.csv', 'w+') as outfile:
             for code in country_code:
                 if code not in countries_iso2_dict:

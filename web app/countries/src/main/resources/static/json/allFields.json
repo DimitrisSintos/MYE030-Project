@@ -1,0 +1,1218 @@
+{
+    "0": {
+        "value": "gdp_total$gdp_total",
+        "innerText": "Total GDP"
+    },
+    "1": {
+        "value": "n value='gdp_capita$gdp_capita'>GDP per capita</option",
+        "innerText": "option value='gdp_capita$gdp_capita'>GDP per capita"
+    },
+    "2": {
+        "value": "gni_capita$gni_capita",
+        "innerText": "GNI per capita"
+    },
+    "3": {
+        "value": "gni_male$gni_male",
+        "innerText": "Male GNI"
+    },
+    "4": {
+        "value": "gni_female$gni_female",
+        "innerText": "Female GNI"
+    },
+    "5": {
+        "value": "domestic_credits$domestic_credits",
+        "innerText": "Domestic credits"
+    },
+    "6": {
+        "value": "income_indexes$income_indexes",
+        "innerText": "Income indexes"
+    },
+    "7": {
+        "value": "labour_shares$labour_shares",
+        "innerText": "Labour shares"
+    },
+    "8": {
+        "value": "gross_fixed_capital_formation$gross_fixed_capital_formation",
+        "innerText": "Gross fixed capital formation (GFCF)"
+    },
+    "9": {
+        "value": "vital_statistics$crude_birth_rate",
+        "innerText": "Crude birth rate"
+    },
+    "10": {
+        "value": "vital_statistics$rate_natural_increase",
+        "innerText": "Natural increase rate"
+    },
+    "11": {
+        "value": "vital_statistics$growth_rate",
+        "innerText": "Growth rate"
+    },
+    "12": {
+        "value": "vital_statistics$net_migration",
+        "innerText": "Net migration"
+    },
+    "13": {
+        "value": "vital_statistics$crude_death_rate",
+        "innerText": "Crude death rate"
+    },
+    "14": {
+        "value": "fertilities$sex_ratio_at_birth",
+        "innerText": "Sex ratio at birth"
+    },
+    "15": {
+        "value": "fertilities$total_fertility_rate",
+        "innerText": "Total fertility rate"
+    },
+    "16": {
+        "value": "fertilities$gross_reproduction_rate",
+        "innerText": "Gross reproduction"
+    },
+    "17": {
+        "value": "fertilities$fertility_rate_15_19",
+        "innerText": "Fertility rate (15-19)"
+    },
+    "18": {
+        "value": "fertilities$fertility_rate_20_24",
+        "innerText": "Fertility rate (20-24)"
+    },
+    "19": {
+        "value": "fertilities$fertility_rate_25_29",
+        "innerText": "Fertility rate (25-29)"
+    },
+    "20": {
+        "value": "fertilities$fertility_rate_30_34",
+        "innerText": "Fertility rate (30-34)"
+    },
+    "21": {
+        "value": "fertilities$fertility_rate_35_39",
+        "innerText": "Fertility rate (35-39)"
+    },
+    "22": {
+        "value": "fertilities$fertility_rate_40_44",
+        "innerText": "Fertility rate (40-44)"
+    },
+    "23": {
+        "value": "fertilities$fertility_rate_45_49",
+        "innerText": "Fertility rate (45-49)"
+    },
+    "24": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_under5",
+        "innerText": "Mortality rate under 5"
+    },
+    "25": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_1to4",
+        "innerText": "Mortality rate 1 to 4"
+    },
+    "26": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_under5_male",
+        "innerText": "Mortality rate under 5 male"
+    },
+    "27": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_1to4_male",
+        "innerText": "Mortality rate 1 to 4 male"
+    },
+    "28": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_under5_female",
+        "innerText": "Mortality rate under 5 female"
+    },
+    "29": {
+        "value": "mortality_life_expectancy_statistics$mortality_rate_1to4_female",
+        "innerText": "Mortality rate 1 to 4 female"
+    },
+    "30": {
+        "value": "mortality_life_expectancy_statistics$infant_mortality",
+        "innerText": "Infant mortality"
+    },
+    "31": {
+        "value": "mortality_life_expectancy_statistics$infant_mortality_male",
+        "innerText": "Infant mortality male"
+    },
+    "32": {
+        "value": "mortality_life_expectancy_statistics$infant_mortality_female",
+        "innerText": "Infant mortality female"
+    },
+    "33": {
+        "value": "mortality_life_expectancy_statistics$life_expectancy",
+        "innerText": "Life expectancy"
+    },
+    "34": {
+        "value": "mortality_life_expectancy_statistics$life_expectancy_male",
+        "innerText": "Life expectancy male"
+    },
+    "35": {
+        "value": "mortality_life_expectancy_statistics$life_expectancy_female",
+        "innerText": "Life expectancy female"
+    },
+    "36": {
+        "value": "five_year_age_groups_population$midyear_population_0_100",
+        "innerText": "Midyear population 0 100"
+    },
+    "37": {
+        "value": "five_year_age_groups_population$midyear_population_0_4",
+        "innerText": "Midyear population 0 4"
+    },
+    "38": {
+        "value": "five_year_age_groups_population$midyear_population_10_14",
+        "innerText": "Midyear population 10 14"
+    },
+    "39": {
+        "value": "five_year_age_groups_population$midyear_population_15_19",
+        "innerText": "Midyear population 15 19"
+    },
+    "40": {
+        "value": "five_year_age_groups_population$midyear_population_20_24",
+        "innerText": "Midyear population 20 24"
+    },
+    "41": {
+        "value": "five_year_age_groups_population$midyear_population_25_29",
+        "innerText": "Midyear population 25 29"
+    },
+    "42": {
+        "value": "five_year_age_groups_population$midyear_population_30_34",
+        "innerText": "Midyear population 30 34"
+    },
+    "43": {
+        "value": "five_year_age_groups_population$midyear_population_35_39",
+        "innerText": "Midyear population 35 39"
+    },
+    "44": {
+        "value": "five_year_age_groups_population$midyear_population_40_44",
+        "innerText": "Midyear population 40 44"
+    },
+    "45": {
+        "value": "five_year_age_groups_population$midyear_population_45_49",
+        "innerText": "Midyear population 45 49"
+    },
+    "46": {
+        "value": "five_year_age_groups_population$midyear_population_50_54",
+        "innerText": "Midyear population 50 54"
+    },
+    "47": {
+        "value": "five_year_age_groups_population$midyear_population_55_59",
+        "innerText": "Midyear population 55 59"
+    },
+    "48": {
+        "value": "five_year_age_groups_population$midyear_population_5_9",
+        "innerText": "Midyear population 5 9"
+    },
+    "49": {
+        "value": "five_year_age_groups_population$midyear_population_60_64",
+        "innerText": "Midyear population 60 64"
+    },
+    "50": {
+        "value": "five_year_age_groups_population$midyear_population_65_69",
+        "innerText": "Midyear population 65 69"
+    },
+    "51": {
+        "value": "five_year_age_groups_population$midyear_population_70_74",
+        "innerText": "Midyear population 70 74"
+    },
+    "52": {
+        "value": "five_year_age_groups_population$midyear_population_75_79",
+        "innerText": "Midyear population 75 79"
+    },
+    "53": {
+        "value": "five_year_age_groups_population$midyear_population_80_84",
+        "innerText": "Midyear population 80 84"
+    },
+    "54": {
+        "value": "five_year_age_groups_population$midyear_population_85_89",
+        "innerText": "Midyear population 85 89"
+    },
+    "55": {
+        "value": "five_year_age_groups_population$midyear_population_90_94",
+        "innerText": "Midyear population 90 94"
+    },
+    "56": {
+        "value": "five_year_age_groups_population$midyear_population_95_99",
+        "innerText": "Midyear population 95 99"
+    },
+    "57": {
+        "value": "five_year_age_groups_population$midyear_population_female_0_100",
+        "innerText": "Midyear population female 0 100"
+    },
+    "58": {
+        "value": "five_year_age_groups_population$midyear_population_female_0_4",
+        "innerText": "Midyear population female 0 4"
+    },
+    "59": {
+        "value": "five_year_age_groups_population$midyear_population_female_10_14",
+        "innerText": "Midyear population female 10 14"
+    },
+    "60": {
+        "value": "five_year_age_groups_population$midyear_population_female_15_19",
+        "innerText": "Midyear population female 15 19"
+    },
+    "61": {
+        "value": "five_year_age_groups_population$midyear_population_female_20_24",
+        "innerText": "Midyear population female 20 24"
+    },
+    "62": {
+        "value": "five_year_age_groups_population$midyear_population_female_25_29",
+        "innerText": "Midyear population female 25 29"
+    },
+    "63": {
+        "value": "five_year_age_groups_population$midyear_population_female_30_34",
+        "innerText": "Midyear population female 30 34"
+    },
+    "64": {
+        "value": "five_year_age_groups_population$midyear_population_female_35_39",
+        "innerText": "Midyear population female 35 39"
+    },
+    "65": {
+        "value": "five_year_age_groups_population$midyear_population_female_40_44",
+        "innerText": "Midyear population female 40 44"
+    },
+    "66": {
+        "value": "five_year_age_groups_population$midyear_population_female_45_49",
+        "innerText": "Midyear population female 45 49"
+    },
+    "67": {
+        "value": "five_year_age_groups_population$midyear_population_female_50_54",
+        "innerText": "Midyear population female 50 54"
+    },
+    "68": {
+        "value": "five_year_age_groups_population$midyear_population_female_55_59",
+        "innerText": "Midyear population female 55 59"
+    },
+    "69": {
+        "value": "five_year_age_groups_population$midyear_population_female_5_9",
+        "innerText": "Midyear population female 5 9"
+    },
+    "70": {
+        "value": "five_year_age_groups_population$midyear_population_female_60_64",
+        "innerText": "Midyear population female 60 64"
+    },
+    "71": {
+        "value": "five_year_age_groups_population$midyear_population_female_65_69",
+        "innerText": "Midyear population female 65 69"
+    },
+    "72": {
+        "value": "five_year_age_groups_population$midyear_population_female_70_74",
+        "innerText": "Midyear population female 70 74"
+    },
+    "73": {
+        "value": "five_year_age_groups_population$midyear_population_female_75_79",
+        "innerText": "Midyear population female 75 79"
+    },
+    "74": {
+        "value": "five_year_age_groups_population$midyear_population_female_80_84",
+        "innerText": "Midyear population female 80 84"
+    },
+    "75": {
+        "value": "five_year_age_groups_population$midyear_population_female_85_89",
+        "innerText": "Midyear population female 85 89"
+    },
+    "76": {
+        "value": "five_year_age_groups_population$midyear_population_female_90_94",
+        "innerText": "Midyear population female 90 94"
+    },
+    "77": {
+        "value": "five_year_age_groups_population$midyear_population_female_95_99",
+        "innerText": "Midyear population female 95 99"
+    },
+    "78": {
+        "value": "five_year_age_groups_population$midyear_population_female_total",
+        "innerText": "Midyear population female total"
+    },
+    "79": {
+        "value": "five_year_age_groups_population$midyear_population_male_0_100",
+        "innerText": "Midyear population male 0 100"
+    },
+    "80": {
+        "value": "five_year_age_groups_population$midyear_population_male_0_4",
+        "innerText": "Midyear population male 0 4"
+    },
+    "81": {
+        "value": "five_year_age_groups_population$midyear_population_male_10_14",
+        "innerText": "Midyear population male 10 14"
+    },
+    "82": {
+        "value": "five_year_age_groups_population$midyear_population_male_15_19",
+        "innerText": "Midyear population male 15 19"
+    },
+    "83": {
+        "value": "five_year_age_groups_population$midyear_population_male_20_24",
+        "innerText": "Midyear population male 20 24"
+    },
+    "84": {
+        "value": "five_year_age_groups_population$midyear_population_male_25_29",
+        "innerText": "Midyear population male 25 29"
+    },
+    "85": {
+        "value": "five_year_age_groups_population$midyear_population_male_30_34",
+        "innerText": "Midyear population male 30 34"
+    },
+    "86": {
+        "value": "five_year_age_groups_population$midyear_population_male_35_39",
+        "innerText": "Midyear population male 35 39"
+    },
+    "87": {
+        "value": "five_year_age_groups_population$midyear_population_male_40_44",
+        "innerText": "Midyear population male 40 44"
+    },
+    "88": {
+        "value": "five_year_age_groups_population$midyear_population_male_45_49",
+        "innerText": "Midyear population male 45 49"
+    },
+    "89": {
+        "value": "five_year_age_groups_population$midyear_population_male_50_54",
+        "innerText": "Midyear population male 50 54"
+    },
+    "90": {
+        "value": "five_year_age_groups_population$midyear_population_male_55_59",
+        "innerText": "Midyear population male 55 59"
+    },
+    "91": {
+        "value": "five_year_age_groups_population$midyear_population_male_5_9",
+        "innerText": "Midyear population male 5 9"
+    },
+    "92": {
+        "value": "five_year_age_groups_population$midyear_population_male_60_64",
+        "innerText": "Midyear population male 60 64"
+    },
+    "93": {
+        "value": "five_year_age_groups_population$midyear_population_male_65_69",
+        "innerText": "Midyear population male 65 69"
+    },
+    "94": {
+        "value": "five_year_age_groups_population$midyear_population_male_70_74",
+        "innerText": "Midyear population male 70 74"
+    },
+    "95": {
+        "value": "five_year_age_groups_population$midyear_population_male_75_79",
+        "innerText": "Midyear population male 75 79"
+    },
+    "96": {
+        "value": "five_year_age_groups_population$midyear_population_male_80_84",
+        "innerText": "Midyear population male 80 84"
+    },
+    "97": {
+        "value": "five_year_age_groups_population$midyear_population_male_85_89",
+        "innerText": "Midyear population male 85 89"
+    },
+    "98": {
+        "value": "five_year_age_groups_population$midyear_population_male_90_94",
+        "innerText": "Midyear population male 90 94"
+    },
+    "99": {
+        "value": "five_year_age_groups_population$midyear_population_male_95_99",
+        "innerText": "Midyear population male 95 99"
+    },
+    "100": {
+        "value": "five_year_age_groups_population$midyear_population_male_total",
+        "innerText": "Midyear population male total"
+    },
+    "101": {
+        "value": "five_year_age_groups_population$midyear_population_total",
+        "innerText": "Midyear population total"
+    },
+    "102": {
+        "value": "population_by_age_sex$Female_population_age_0",
+        "innerText": "Female population age 0"
+    },
+    "103": {
+        "value": "population_by_age_sex$Female_population_age_1",
+        "innerText": "Female population age 1"
+    },
+    "104": {
+        "value": "population_by_age_sex$Female_population_age_10",
+        "innerText": "Female population age 10"
+    },
+    "105": {
+        "value": "population_by_age_sex$Female_population_age_100",
+        "innerText": "Female population age 100"
+    },
+    "106": {
+        "value": "population_by_age_sex$Female_population_age_11",
+        "innerText": "Female population age 11"
+    },
+    "107": {
+        "value": "population_by_age_sex$Female_population_age_12",
+        "innerText": "Female population age 12"
+    },
+    "108": {
+        "value": "population_by_age_sex$Female_population_age_13",
+        "innerText": "Female population age 13"
+    },
+    "109": {
+        "value": "population_by_age_sex$Female_population_age_14",
+        "innerText": "Female population age 14"
+    },
+    "110": {
+        "value": "population_by_age_sex$Female_population_age_15",
+        "innerText": "Female population age 15"
+    },
+    "111": {
+        "value": "population_by_age_sex$Female_population_age_16",
+        "innerText": "Female population age 16"
+    },
+    "112": {
+        "value": "population_by_age_sex$Female_population_age_17",
+        "innerText": "Female population age 17"
+    },
+    "113": {
+        "value": "population_by_age_sex$Female_population_age_18",
+        "innerText": "Female population age 18"
+    },
+    "114": {
+        "value": "population_by_age_sex$Female_population_age_19",
+        "innerText": "Female population age 19"
+    },
+    "115": {
+        "value": "population_by_age_sex$Female_population_age_2",
+        "innerText": "Female population age 2"
+    },
+    "116": {
+        "value": "population_by_age_sex$Female_population_age_20",
+        "innerText": "Female population age 20"
+    },
+    "117": {
+        "value": "population_by_age_sex$Female_population_age_21",
+        "innerText": "Female population age 21"
+    },
+    "118": {
+        "value": "population_by_age_sex$Female_population_age_22",
+        "innerText": "Female population age 22"
+    },
+    "119": {
+        "value": "population_by_age_sex$Female_population_age_23",
+        "innerText": "Female population age 23"
+    },
+    "120": {
+        "value": "population_by_age_sex$Female_population_age_24",
+        "innerText": "Female population age 24"
+    },
+    "121": {
+        "value": "population_by_age_sex$Female_population_age_25",
+        "innerText": "Female population age 25"
+    },
+    "122": {
+        "value": "population_by_age_sex$Female_population_age_26",
+        "innerText": "Female population age 26"
+    },
+    "123": {
+        "value": "population_by_age_sex$Female_population_age_27",
+        "innerText": "Female population age 27"
+    },
+    "124": {
+        "value": "population_by_age_sex$Female_population_age_28",
+        "innerText": "Female population age 28"
+    },
+    "125": {
+        "value": "population_by_age_sex$Female_population_age_29",
+        "innerText": "Female population age 29"
+    },
+    "126": {
+        "value": "population_by_age_sex$Female_population_age_3",
+        "innerText": "Female population age 3"
+    },
+    "127": {
+        "value": "population_by_age_sex$Female_population_age_30",
+        "innerText": "Female population age 30"
+    },
+    "128": {
+        "value": "population_by_age_sex$Female_population_age_31",
+        "innerText": "Female population age 31"
+    },
+    "129": {
+        "value": "population_by_age_sex$Female_population_age_32",
+        "innerText": "Female population age 32"
+    },
+    "130": {
+        "value": "population_by_age_sex$Female_population_age_33",
+        "innerText": "Female population age 33"
+    },
+    "131": {
+        "value": "population_by_age_sex$Female_population_age_34",
+        "innerText": "Female population age 34"
+    },
+    "132": {
+        "value": "population_by_age_sex$Female_population_age_35",
+        "innerText": "Female population age 35"
+    },
+    "133": {
+        "value": "population_by_age_sex$Female_population_age_36",
+        "innerText": "Female population age 36"
+    },
+    "134": {
+        "value": "population_by_age_sex$Female_population_age_37",
+        "innerText": "Female population age 37"
+    },
+    "135": {
+        "value": "population_by_age_sex$Female_population_age_38",
+        "innerText": "Female population age 38"
+    },
+    "136": {
+        "value": "population_by_age_sex$Female_population_age_39",
+        "innerText": "Female population age 39"
+    },
+    "137": {
+        "value": "population_by_age_sex$Female_population_age_4",
+        "innerText": "Female population age 4"
+    },
+    "138": {
+        "value": "population_by_age_sex$Female_population_age_40",
+        "innerText": "Female population age 40"
+    },
+    "139": {
+        "value": "population_by_age_sex$Female_population_age_41",
+        "innerText": "Female population age 41"
+    },
+    "140": {
+        "value": "population_by_age_sex$Female_population_age_42",
+        "innerText": "Female population age 42"
+    },
+    "141": {
+        "value": "population_by_age_sex$Female_population_age_43",
+        "innerText": "Female population age 43"
+    },
+    "142": {
+        "value": "population_by_age_sex$Female_population_age_44",
+        "innerText": "Female population age 44"
+    },
+    "143": {
+        "value": "population_by_age_sex$Female_population_age_45",
+        "innerText": "Female population age 45"
+    },
+    "144": {
+        "value": "population_by_age_sex$Female_population_age_46",
+        "innerText": "Female population age 46"
+    },
+    "145": {
+        "value": "population_by_age_sex$Female_population_age_47",
+        "innerText": "Female population age 47"
+    },
+    "146": {
+        "value": "population_by_age_sex$Female_population_age_48",
+        "innerText": "Female population age 48"
+    },
+    "147": {
+        "value": "population_by_age_sex$Female_population_age_49",
+        "innerText": "Female population age 49"
+    },
+    "148": {
+        "value": "population_by_age_sex$Female_population_age_5",
+        "innerText": "Female population age 5"
+    },
+    "149": {
+        "value": "population_by_age_sex$Female_population_age_50",
+        "innerText": "Female population age 50"
+    },
+    "150": {
+        "value": "population_by_age_sex$Female_population_age_51",
+        "innerText": "Female population age 51"
+    },
+    "151": {
+        "value": "population_by_age_sex$Female_population_age_52",
+        "innerText": "Female population age 52"
+    },
+    "152": {
+        "value": "population_by_age_sex$Female_population_age_53",
+        "innerText": "Female population age 53"
+    },
+    "153": {
+        "value": "population_by_age_sex$Female_population_age_54",
+        "innerText": "Female population age 54"
+    },
+    "154": {
+        "value": "population_by_age_sex$Female_population_age_55",
+        "innerText": "Female population age 55"
+    },
+    "155": {
+        "value": "population_by_age_sex$Female_population_age_56",
+        "innerText": "Female population age 56"
+    },
+    "156": {
+        "value": "population_by_age_sex$Female_population_age_57",
+        "innerText": "Female population age 57"
+    },
+    "157": {
+        "value": "population_by_age_sex$Female_population_age_58",
+        "innerText": "Female population age 58"
+    },
+    "158": {
+        "value": "population_by_age_sex$Female_population_age_59",
+        "innerText": "Female population age 59"
+    },
+    "159": {
+        "value": "population_by_age_sex$Female_population_age_6",
+        "innerText": "Female population age 6"
+    },
+    "160": {
+        "value": "population_by_age_sex$Female_population_age_60",
+        "innerText": "Female population age 60"
+    },
+    "161": {
+        "value": "population_by_age_sex$Female_population_age_61",
+        "innerText": "Female population age 61"
+    },
+    "162": {
+        "value": "population_by_age_sex$Female_population_age_62",
+        "innerText": "Female population age 62"
+    },
+    "163": {
+        "value": "population_by_age_sex$Female_population_age_63",
+        "innerText": "Female population age 63"
+    },
+    "164": {
+        "value": "population_by_age_sex$Female_population_age_64",
+        "innerText": "Female population age 64"
+    },
+    "165": {
+        "value": "population_by_age_sex$Female_population_age_65",
+        "innerText": "Female population age 65"
+    },
+    "166": {
+        "value": "population_by_age_sex$Female_population_age_66",
+        "innerText": "Female population age 66"
+    },
+    "167": {
+        "value": "population_by_age_sex$Female_population_age_67",
+        "innerText": "Female population age 67"
+    },
+    "168": {
+        "value": "population_by_age_sex$Female_population_age_68",
+        "innerText": "Female population age 68"
+    },
+    "169": {
+        "value": "population_by_age_sex$Female_population_age_69",
+        "innerText": "Female population age 69"
+    },
+    "170": {
+        "value": "population_by_age_sex$Female_population_age_7",
+        "innerText": "Female population age 7"
+    },
+    "171": {
+        "value": "population_by_age_sex$Female_population_age_70",
+        "innerText": "Female population age 70"
+    },
+    "172": {
+        "value": "population_by_age_sex$Female_population_age_71",
+        "innerText": "Female population age 71"
+    },
+    "173": {
+        "value": "population_by_age_sex$Female_population_age_72",
+        "innerText": "Female population age 72"
+    },
+    "174": {
+        "value": "population_by_age_sex$Female_population_age_73",
+        "innerText": "Female population age 73"
+    },
+    "175": {
+        "value": "population_by_age_sex$Female_population_age_74",
+        "innerText": "Female population age 74"
+    },
+    "176": {
+        "value": "population_by_age_sex$Female_population_age_75",
+        "innerText": "Female population age 75"
+    },
+    "177": {
+        "value": "population_by_age_sex$Female_population_age_76",
+        "innerText": "Female population age 76"
+    },
+    "178": {
+        "value": "population_by_age_sex$Female_population_age_77",
+        "innerText": "Female population age 77"
+    },
+    "179": {
+        "value": "population_by_age_sex$Female_population_age_78",
+        "innerText": "Female population age 78"
+    },
+    "180": {
+        "value": "population_by_age_sex$Female_population_age_79",
+        "innerText": "Female population age 79"
+    },
+    "181": {
+        "value": "population_by_age_sex$Female_population_age_8",
+        "innerText": "Female population age 8"
+    },
+    "182": {
+        "value": "population_by_age_sex$Female_population_age_80",
+        "innerText": "Female population age 80"
+    },
+    "183": {
+        "value": "population_by_age_sex$Female_population_age_81",
+        "innerText": "Female population age 81"
+    },
+    "184": {
+        "value": "population_by_age_sex$Female_population_age_82",
+        "innerText": "Female population age 82"
+    },
+    "185": {
+        "value": "population_by_age_sex$Female_population_age_83",
+        "innerText": "Female population age 83"
+    },
+    "186": {
+        "value": "population_by_age_sex$Female_population_age_84",
+        "innerText": "Female population age 84"
+    },
+    "187": {
+        "value": "population_by_age_sex$Female_population_age_85",
+        "innerText": "Female population age 85"
+    },
+    "188": {
+        "value": "population_by_age_sex$Female_population_age_86",
+        "innerText": "Female population age 86"
+    },
+    "189": {
+        "value": "population_by_age_sex$Female_population_age_87",
+        "innerText": "Female population age 87"
+    },
+    "190": {
+        "value": "population_by_age_sex$Female_population_age_88",
+        "innerText": "Female population age 88"
+    },
+    "191": {
+        "value": "population_by_age_sex$Female_population_age_89",
+        "innerText": "Female population age 89"
+    },
+    "192": {
+        "value": "population_by_age_sex$Female_population_age_9",
+        "innerText": "Female population age 9"
+    },
+    "193": {
+        "value": "population_by_age_sex$Female_population_age_90",
+        "innerText": "Female population age 90"
+    },
+    "194": {
+        "value": "population_by_age_sex$Female_population_age_91",
+        "innerText": "Female population age 91"
+    },
+    "195": {
+        "value": "population_by_age_sex$Female_population_age_92",
+        "innerText": "Female population age 92"
+    },
+    "196": {
+        "value": "population_by_age_sex$Female_population_age_93",
+        "innerText": "Female population age 93"
+    },
+    "197": {
+        "value": "population_by_age_sex$Female_population_age_94",
+        "innerText": "Female population age 94"
+    },
+    "198": {
+        "value": "population_by_age_sex$Female_population_age_95",
+        "innerText": "Female population age 95"
+    },
+    "199": {
+        "value": "population_by_age_sex$Female_population_age_96",
+        "innerText": "Female population age 96"
+    },
+    "200": {
+        "value": "population_by_age_sex$Female_population_age_97",
+        "innerText": "Female population age 97"
+    },
+    "201": {
+        "value": "population_by_age_sex$Female_population_age_98",
+        "innerText": "Female population age 98"
+    },
+    "202": {
+        "value": "population_by_age_sex$Female_population_age_99",
+        "innerText": "Female population age 99"
+    },
+    "203": {
+        "value": "population_by_age_sex$Male_population_age_0",
+        "innerText": "Male population age 0"
+    },
+    "204": {
+        "value": "population_by_age_sex$Male_population_age_1",
+        "innerText": "Male population age 1"
+    },
+    "205": {
+        "value": "population_by_age_sex$Male_population_age_10",
+        "innerText": "Male population age 10"
+    },
+    "206": {
+        "value": "population_by_age_sex$Male_population_age_100",
+        "innerText": "Male population age 100"
+    },
+    "207": {
+        "value": "population_by_age_sex$Male_population_age_11",
+        "innerText": "Male population age 11"
+    },
+    "208": {
+        "value": "population_by_age_sex$Male_population_age_12",
+        "innerText": "Male population age 12"
+    },
+    "209": {
+        "value": "population_by_age_sex$Male_population_age_13",
+        "innerText": "Male population age 13"
+    },
+    "210": {
+        "value": "population_by_age_sex$Male_population_age_14",
+        "innerText": "Male population age 14"
+    },
+    "211": {
+        "value": "population_by_age_sex$Male_population_age_15",
+        "innerText": "Male population age 15"
+    },
+    "212": {
+        "value": "population_by_age_sex$Male_population_age_16",
+        "innerText": "Male population age 16"
+    },
+    "213": {
+        "value": "population_by_age_sex$Male_population_age_17",
+        "innerText": "Male population age 17"
+    },
+    "214": {
+        "value": "population_by_age_sex$Male_population_age_18",
+        "innerText": "Male population age 18"
+    },
+    "215": {
+        "value": "population_by_age_sex$Male_population_age_19",
+        "innerText": "Male population age 19"
+    },
+    "216": {
+        "value": "population_by_age_sex$Male_population_age_2",
+        "innerText": "Male population age 2"
+    },
+    "217": {
+        "value": "population_by_age_sex$Male_population_age_20",
+        "innerText": "Male population age 20"
+    },
+    "218": {
+        "value": "population_by_age_sex$Male_population_age_21",
+        "innerText": "Male population age 21"
+    },
+    "219": {
+        "value": "population_by_age_sex$Male_population_age_22",
+        "innerText": "Male population age 22"
+    },
+    "220": {
+        "value": "population_by_age_sex$Male_population_age_23",
+        "innerText": "Male population age 23"
+    },
+    "221": {
+        "value": "population_by_age_sex$Male_population_age_24",
+        "innerText": "Male population age 24"
+    },
+    "222": {
+        "value": "population_by_age_sex$Male_population_age_25",
+        "innerText": "Male population age 25"
+    },
+    "223": {
+        "value": "population_by_age_sex$Male_population_age_26",
+        "innerText": "Male population age 26"
+    },
+    "224": {
+        "value": "population_by_age_sex$Male_population_age_27",
+        "innerText": "Male population age 27"
+    },
+    "225": {
+        "value": "population_by_age_sex$Male_population_age_28",
+        "innerText": "Male population age 28"
+    },
+    "226": {
+        "value": "population_by_age_sex$Male_population_age_29",
+        "innerText": "Male population age 29"
+    },
+    "227": {
+        "value": "population_by_age_sex$Male_population_age_3",
+        "innerText": "Male population age 3"
+    },
+    "228": {
+        "value": "population_by_age_sex$Male_population_age_30",
+        "innerText": "Male population age 30"
+    },
+    "229": {
+        "value": "population_by_age_sex$Male_population_age_31",
+        "innerText": "Male population age 31"
+    },
+    "230": {
+        "value": "population_by_age_sex$Male_population_age_32",
+        "innerText": "Male population age 32"
+    },
+    "231": {
+        "value": "population_by_age_sex$Male_population_age_33",
+        "innerText": "Male population age 33"
+    },
+    "232": {
+        "value": "population_by_age_sex$Male_population_age_34",
+        "innerText": "Male population age 34"
+    },
+    "233": {
+        "value": "population_by_age_sex$Male_population_age_35",
+        "innerText": "Male population age 35"
+    },
+    "234": {
+        "value": "population_by_age_sex$Male_population_age_36",
+        "innerText": "Male population age 36"
+    },
+    "235": {
+        "value": "population_by_age_sex$Male_population_age_37",
+        "innerText": "Male population age 37"
+    },
+    "236": {
+        "value": "population_by_age_sex$Male_population_age_38",
+        "innerText": "Male population age 38"
+    },
+    "237": {
+        "value": "population_by_age_sex$Male_population_age_39",
+        "innerText": "Male population age 39"
+    },
+    "238": {
+        "value": "population_by_age_sex$Male_population_age_4",
+        "innerText": "Male population age 4"
+    },
+    "239": {
+        "value": "population_by_age_sex$Male_population_age_40",
+        "innerText": "Male population age 40"
+    },
+    "240": {
+        "value": "population_by_age_sex$Male_population_age_41",
+        "innerText": "Male population age 41"
+    },
+    "241": {
+        "value": "population_by_age_sex$Male_population_age_42",
+        "innerText": "Male population age 42"
+    },
+    "242": {
+        "value": "population_by_age_sex$Male_population_age_43",
+        "innerText": "Male population age 43"
+    },
+    "243": {
+        "value": "population_by_age_sex$Male_population_age_44",
+        "innerText": "Male population age 44"
+    },
+    "244": {
+        "value": "population_by_age_sex$Male_population_age_45",
+        "innerText": "Male population age 45"
+    },
+    "245": {
+        "value": "population_by_age_sex$Male_population_age_46",
+        "innerText": "Male population age 46"
+    },
+    "246": {
+        "value": "population_by_age_sex$Male_population_age_47",
+        "innerText": "Male population age 47"
+    },
+    "247": {
+        "value": "population_by_age_sex$Male_population_age_48",
+        "innerText": "Male population age 48"
+    },
+    "248": {
+        "value": "population_by_age_sex$Male_population_age_49",
+        "innerText": "Male population age 49"
+    },
+    "249": {
+        "value": "population_by_age_sex$Male_population_age_5",
+        "innerText": "Male population age 5"
+    },
+    "250": {
+        "value": "population_by_age_sex$Male_population_age_50",
+        "innerText": "Male population age 50"
+    },
+    "251": {
+        "value": "population_by_age_sex$Male_population_age_51",
+        "innerText": "Male population age 51"
+    },
+    "252": {
+        "value": "population_by_age_sex$Male_population_age_52",
+        "innerText": "Male population age 52"
+    },
+    "253": {
+        "value": "population_by_age_sex$Male_population_age_53",
+        "innerText": "Male population age 53"
+    },
+    "254": {
+        "value": "population_by_age_sex$Male_population_age_54",
+        "innerText": "Male population age 54"
+    },
+    "255": {
+        "value": "population_by_age_sex$Male_population_age_55",
+        "innerText": "Male population age 55"
+    },
+    "256": {
+        "value": "population_by_age_sex$Male_population_age_56",
+        "innerText": "Male population age 56"
+    },
+    "257": {
+        "value": "population_by_age_sex$Male_population_age_57",
+        "innerText": "Male population age 57"
+    },
+    "258": {
+        "value": "population_by_age_sex$Male_population_age_58",
+        "innerText": "Male population age 58"
+    },
+    "259": {
+        "value": "population_by_age_sex$Male_population_age_59",
+        "innerText": "Male population age 59"
+    },
+    "260": {
+        "value": "population_by_age_sex$Male_population_age_6",
+        "innerText": "Male population age 6"
+    },
+    "261": {
+        "value": "population_by_age_sex$Male_population_age_60",
+        "innerText": "Male population age 60"
+    },
+    "262": {
+        "value": "population_by_age_sex$Male_population_age_61",
+        "innerText": "Male population age 61"
+    },
+    "263": {
+        "value": "population_by_age_sex$Male_population_age_62",
+        "innerText": "Male population age 62"
+    },
+    "264": {
+        "value": "population_by_age_sex$Male_population_age_63",
+        "innerText": "Male population age 63"
+    },
+    "265": {
+        "value": "population_by_age_sex$Male_population_age_64",
+        "innerText": "Male population age 64"
+    },
+    "266": {
+        "value": "population_by_age_sex$Male_population_age_65",
+        "innerText": "Male population age 65"
+    },
+    "267": {
+        "value": "population_by_age_sex$Male_population_age_66",
+        "innerText": "Male population age 66"
+    },
+    "268": {
+        "value": "population_by_age_sex$Male_population_age_67",
+        "innerText": "Male population age 67"
+    },
+    "269": {
+        "value": "population_by_age_sex$Male_population_age_68",
+        "innerText": "Male population age 68"
+    },
+    "270": {
+        "value": "population_by_age_sex$Male_population_age_69",
+        "innerText": "Male population age 69"
+    },
+    "271": {
+        "value": "population_by_age_sex$Male_population_age_7",
+        "innerText": "Male population age 7"
+    },
+    "272": {
+        "value": "population_by_age_sex$Male_population_age_70",
+        "innerText": "Male population age 70"
+    },
+    "273": {
+        "value": "population_by_age_sex$Male_population_age_71",
+        "innerText": "Male population age 71"
+    },
+    "274": {
+        "value": "population_by_age_sex$Male_population_age_72",
+        "innerText": "Male population age 72"
+    },
+    "275": {
+        "value": "population_by_age_sex$Male_population_age_73",
+        "innerText": "Male population age 73"
+    },
+    "276": {
+        "value": "population_by_age_sex$Male_population_age_74",
+        "innerText": "Male population age 74"
+    },
+    "277": {
+        "value": "population_by_age_sex$Male_population_age_75",
+        "innerText": "Male population age 75"
+    },
+    "278": {
+        "value": "population_by_age_sex$Male_population_age_76",
+        "innerText": "Male population age 76"
+    },
+    "279": {
+        "value": "population_by_age_sex$Male_population_age_77",
+        "innerText": "Male population age 77"
+    },
+    "280": {
+        "value": "population_by_age_sex$Male_population_age_78",
+        "innerText": "Male population age 78"
+    },
+    "281": {
+        "value": "population_by_age_sex$Male_population_age_79",
+        "innerText": "Male population age 79"
+    },
+    "282": {
+        "value": "population_by_age_sex$Male_population_age_8",
+        "innerText": "Male population age 8"
+    },
+    "283": {
+        "value": "population_by_age_sex$Male_population_age_80",
+        "innerText": "Male population age 80"
+    },
+    "284": {
+        "value": "population_by_age_sex$Male_population_age_81",
+        "innerText": "Male population age 81"
+    },
+    "285": {
+        "value": "population_by_age_sex$Male_population_age_82",
+        "innerText": "Male population age 82"
+    },
+    "286": {
+        "value": "population_by_age_sex$Male_population_age_83",
+        "innerText": "Male population age 83"
+    },
+    "287": {
+        "value": "population_by_age_sex$Male_population_age_84",
+        "innerText": "Male population age 84"
+    },
+    "288": {
+        "value": "population_by_age_sex$Male_population_age_85",
+        "innerText": "Male population age 85"
+    },
+    "289": {
+        "value": "population_by_age_sex$Male_population_age_86",
+        "innerText": "Male population age 86"
+    },
+    "290": {
+        "value": "population_by_age_sex$Male_population_age_87",
+        "innerText": "Male population age 87"
+    },
+    "291": {
+        "value": "population_by_age_sex$Male_population_age_88",
+        "innerText": "Male population age 88"
+    },
+    "292": {
+        "value": "population_by_age_sex$Male_population_age_89",
+        "innerText": "Male population age 89"
+    },
+    "293": {
+        "value": "population_by_age_sex$Male_population_age_9",
+        "innerText": "Male population age 9"
+    },
+    "294": {
+        "value": "population_by_age_sex$Male_population_age_90",
+        "innerText": "Male population age 90"
+    },
+    "295": {
+        "value": "population_by_age_sex$Male_population_age_91",
+        "innerText": "Male population age 91"
+    },
+    "296": {
+        "value": "population_by_age_sex$Male_population_age_92",
+        "innerText": "Male population age 92"
+    },
+    "297": {
+        "value": "population_by_age_sex$Male_population_age_93",
+        "innerText": "Male population age 93"
+    },
+    "298": {
+        "value": "population_by_age_sex$Male_population_age_94",
+        "innerText": "Male population age 94"
+    },
+    "299": {
+        "value": "population_by_age_sex$Male_population_age_95",
+        "innerText": "Male population age 95"
+    },
+    "300": {
+        "value": "population_by_age_sex$Male_population_age_96",
+        "innerText": "Male population age 96"
+    },
+    "301": {
+        "value": "population_by_age_sex$Male_population_age_97",
+        "innerText": "Male population age 97"
+    },
+    "302": {
+        "value": "population_by_age_sex$Male_population_age_98",
+        "innerText": "Male population age 98"
+    },
+    "303": {
+        "value": "population_by_age_sex$Male_population_age_99",
+        "innerText": "Male population age 99"
+    }
+}

@@ -3,7 +3,7 @@ package mye030.countries.dto;
 import java.util.List;
 import java.util.Map;
 
-public class RequestDTO {
+public class TimeseriesRequestDTO {
     private List<String> countries;
     private Map<String, List<String>> fields;
     private YearRangeDTO years;

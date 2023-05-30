@@ -10,5 +10,5 @@ public interface metricsRepository {
     List<Map<String, Object>> findGdpPerCapitaByCountries(List<String> countryIsoCode);
 
     List<Map<String, Object>> findDataByCountryAndFields(String countryIso, List<String> fieldNames, String fromTable);
-    
+
 }

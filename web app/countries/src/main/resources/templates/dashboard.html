@@ -419,12 +419,10 @@
                                 </select>
                             </div>
                             <div class="my-row mt-4">
-                                <!-- TODO -->
-                                <!-- <option value="">-- Select an option --</option>
-                                <option th:each="option : ${#json.parse(#strings.replace(allFields, '\'', '\"'))}"
-                                        th:value="${option.value}"
-                                        th:text="${option.innerText}">
-                                </option> -->
+                                <option th:each="option : ${options}"
+                                    th:value="${option.value}"
+                                    th:text="${option.innerText}">
+                                </option>
                             </div>
 
                         </div>

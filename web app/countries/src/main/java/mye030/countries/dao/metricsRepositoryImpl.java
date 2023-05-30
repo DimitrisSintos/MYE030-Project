@@ -1,5 +1,9 @@
 package mye030.countries.dao;
 
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +27,15 @@ public class metricsRepositoryImpl implements metricsRepository {
     public List<Map<String, Object>> findDataByCountryAndFields(String countryIso, List<String> fieldNames, String tableName) {
         String query = "";
 
-        if (fieldNames.isEmpty()) {
+        if (fieldNames.isEmpty() || fieldNames == null || fieldNames.get(0).equals("")) {
             query = "SELECT * FROM " + tableName + " WHERE iso_code in (" + countryIso + ");";
         }
         else {
             query = "SELECT * FROM " + tableName + " WHERE iso_code in (" + countryIso + ") AND field in ('" + String.join("','", fieldNames) + "');";
         }
 
-        // TODO: treat the 2 special tables differently
-        
         return jdbcTemplate.queryForList(query);
     }
-    
+
+   
 }

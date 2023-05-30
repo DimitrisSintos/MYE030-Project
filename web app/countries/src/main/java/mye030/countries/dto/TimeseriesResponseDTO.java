@@ -7,18 +7,18 @@ import java.util.Map;
 
 import org.apache.catalina.connector.Response;
 
-public class ResponseDTO {
+public class TimeseriesResponseDTO {
     private Map<String, Map<String, FieldDTO>> data;
 
 
     // mapper method to turn a List<Map<String, Object>> into a ResponseDTO
-    public static ResponseDTO mapToResponseDTO(Map<String, Map<String, Object>> results, int minYear, int maxYear) {
+    public static TimeseriesResponseDTO mapToResponseDTO(Map<String, Map<String, Object>> results, int minYear, int maxYear) {
         if (results.isEmpty()) {
             // Handle empty result case if needed
             return null;
         }
 
-        ResponseDTO responseDTO = new ResponseDTO();
+        TimeseriesResponseDTO responseDTO = new TimeseriesResponseDTO();
         Map<String, Map<String, FieldDTO>> data = new HashMap<>();
 
 

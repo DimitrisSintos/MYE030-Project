@@ -532,3 +532,10 @@ select {
 #select2-single-country-container{
     width: 400px !important;
 }
+
+#select2-single-xField-container{
+    width: 400px !important;
+}
+#select2-single-yField-container{
+    width: 400px !important;
+}

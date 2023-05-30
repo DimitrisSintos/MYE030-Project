@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="page-head-title">MYE030-Project</div>
+    <div class="page-head-title">MYE030-Project, Powered by Toumpaniasmenoi &#128170</div>
     <main class="text-center" id ="main">
 
         <div class="charts-container">
@@ -1617,13 +1617,98 @@ class Scatter extends Chart{
             async: false,
             data: JSON.stringify(data),
         }).done(function(response){
-            chartData = response.data;
-            console.log("Scatter data: ",chartData);
+            console.log("RESPONSE Scatter data: ",response);
+            chartData = response.dataPoints;
         }).fail(function(err){
             console.log("err: ",err);
             chartData = null;
         });
         return chartData;
+    }
+    draw() {
+        //set Title
+        let myTitle = this._chartTitle
+        if( myTitle === ""){
+            if(this._fixedField === "country"){
+                myTitle = Object.values(this._countries)[0];
+            }
+            else if (this._fixedField === "year"){
+                myTitle = this._years.min;
+            }
+        }
+        $('#'+this._id+'-title').text(myTitle);
+        console.log("countries: ", this._countries);
+        console.log("fields: ", this._fields);
+        console.log("chartType: ", this._chartType);
+        // Call the appropriate getData function based on chart type
+        let chartData = this.getScatterData();
+
+        if(chartData == null ){
+            //clear chart
+            Plotly.react(this._id);
+            return;
+        }
+        const tracesToDraw = [];
+        let myX = []
+        let myY = []
+        let rm = []
+        for( let point of chartData){
+            myX.push(point.x);
+            myY.push(point.y);
+            if (this._fixedField === "country"){
+                rm.push(point.year);
+            }
+            else if (this._fixedField === "year"){
+                rm.push(point.countryoi);
+            }
+            
+        }
+        console.log("tracesToDraw: ", tracesToDraw);
+        const trace = {
+                x: myX,
+                y: myY,
+                text: rm,
+                name: this._fixedField ==='country'?Object.values(this._countries)[0]: this._years.min,
+                mode: 'markers',
+                type: "scatter",
+            }
+        tracesToDraw.push(trace);
+        
+        const layout = {
+            margin: {
+                l: 100,
+                r: 100,
+                b: 70,
+                t: 50,
+                pad: 4
+            },
+            xaxis: {
+                title: this._xTitle === ""? this._xField.split("$")[1] : this._xTitle,
+            },
+            yaxis: {
+                title: this._yTitle === ""? this._yField.split("$")[1] : this._yTitle,
+                // exponentformat: "none",
+                autorange: true,
+            }, 
+            showlegend: this._showLegend,
+            legend: {
+                x: 1.1,
+                y: 0.5,
+                traceorder: 'normal',
+                font: {
+                    family: 'sans-serif',
+                    size: 12,
+                    color: '#000'
+                },
+                bgcolor: '#E2E2E2',
+                bordercolor: '#FFFFFF',
+                borderwidth: 2
+            } 
+            
+        };
+        Plotly.react(this._id, tracesToDraw, layout);
+        
+        
     }
 
 }

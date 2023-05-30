@@ -6,18 +6,19 @@ import java.util.*;
 import org.apache.catalina.connector.Response;
 
 public class ScatterResponseDTO {
-    private String country;
+    private String fixed;
     private List<Map<String, Object>> dataPoints;
 
     // mapper method to turn a List<Map<String, Object>> into a ResponseDTO
     public static ScatterResponseDTO mapToResponseDTO(Map<String, Object> data1, Map<String, Object> data2, int minYear, int maxYear) {
         ScatterResponseDTO scatterResponseDTO = new ScatterResponseDTO();
 
-        Map<String, Object> resultMap = new HashMap<>();
+        if (data1 == null || data2 == null || data1.isEmpty() || data2.isEmpty()) {
+            return scatterResponseDTO;
+        }
 
         // Extract iso_code from data1
         String isoCode = String.valueOf(data1.get("iso_code"));
-        resultMap.put("iso_code", isoCode);
 
         // Extract the common years between data1 and data2
         Set<String> commonYears = new HashSet<>(data1.keySet());
@@ -38,17 +39,58 @@ public class ScatterResponseDTO {
             dataPoints.add(dataPoint);
         }
 
-        // Put the data points list in the result map
-        resultMap.put("data", dataPoints);
-
-        System.out.println(resultMap);
-
-        scatterResponseDTO.setCountry(resultMap.get("iso_code").toString());
+        scatterResponseDTO.setFixed(isoCode);
         scatterResponseDTO.setDataPoints(dataPoints);
         return scatterResponseDTO;
     
         
     }
+
+
+    public static ScatterResponseDTO mapToResponseDTO(List<Map<String, Object>> data1, List<Map<String, Object>> data2, String year) {
+        ScatterResponseDTO scatterResponseDTO = new ScatterResponseDTO();
+
+        if (data1 == null || data2 == null || data1.isEmpty() || data2.isEmpty()) {
+            return scatterResponseDTO;
+        }
+
+        // Extract the common countries between data1 and data2
+        Set<String> commonCountries = new HashSet<>();
+        for (Map<String, Object> row : data1) {
+            commonCountries.add(String.valueOf(row.get("iso_code")));
+        }
+        for (Map<String, Object> row : data2) {
+            commonCountries.add(String.valueOf(row.get("iso_code")));
+        }
+
+        // Create a list to hold the data points
+        List<Map<String, Object>> dataPoints = new ArrayList<>();
+
+        // Iterate over the common countries and create data points
+        
+        for (String country : commonCountries) {
+            Map<String, Object> dataPoint = new HashMap<>();
+            dataPoint.put("country", country);
+
+            for (int i=0 ; i<data1.size() ; i++) {
+                if (String.valueOf(data1.get(i).get("iso_code")).equals(country)) {
+                    dataPoint.put("x", data1.get(i).get(year));
+                    dataPoint.put("y", data2.get(i).get(year));
+                }
+            }
+
+
+            dataPoints.add(dataPoint);
+        }
+
+
+        scatterResponseDTO.setFixed(year);
+        scatterResponseDTO.setDataPoints(dataPoints);
+        return scatterResponseDTO;
+    
+        
+    }
+
 
     private static boolean isInRange(String year, int start, int end) {
         int yearInt = Integer.parseInt(year);
@@ -57,16 +99,16 @@ public class ScatterResponseDTO {
 
     @Override
     public String toString() {
-        return "ScatterResponseDTO [country=" + country + ", dataPoints=" + dataPoints + "]";
+        return "ScatterResponseDTO [fixed=" + fixed + ", dataPoints=" + dataPoints + "]";
     }
 
 
-    public String getCountry() {
-        return country;
+    public String getFixed() {
+        return fixed;
     }
     
-    public void setCountry(String country) {
-        this.country = country;
+    public void setFixed(String value) {
+        this.fixed = value;
     }
     
     public List<Map<String, Object>> getDataPoints() {

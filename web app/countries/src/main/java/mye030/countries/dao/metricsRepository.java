@@ -11,4 +11,7 @@ public interface metricsRepository {
 
     List<Map<String, Object>> findDataByCountryAndFields(String countryIso, List<String> fieldNames, String fromTable);
 
+    List<Map<String, Object>> findDataByYearAndField(String year, String fieldName, String fromTable);
+
+    
 }

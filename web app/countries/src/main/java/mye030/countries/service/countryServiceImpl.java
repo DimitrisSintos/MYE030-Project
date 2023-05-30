@@ -15,7 +15,6 @@ import mye030.countries.dto.TimeseriesRequestDTO;
 import mye030.countries.dto.TimeseriesResponseDTO;
 import mye030.countries.dto.ScatterRequestDTO;
 import mye030.countries.dto.ScatterResponseDTO;
-import mye030.countries.dto.SingleField;
 import mye030.countries.model.Country;
 
 @Service
@@ -83,7 +82,7 @@ public class countryServiceImpl implements countryService {
             return fixedCountryScatter(request);
         }
         else if (fixedField.equals("year")) {
-            return fixedCountryScatter(request);
+            return fixedYearScatter(request);
         }
         else {
             throw new IllegalArgumentException("Fixed field must be either 'country' or 'year'");
@@ -114,8 +113,14 @@ public class countryServiceImpl implements countryService {
         return result;
     }
 
+    private List<Map<String, Object>> findDataForYear(String year, String fieldName, String tableName) {
+        List<Map<String, Object>> resultRows = metricsRepository.findDataByYearAndField(year, fieldName, tableName);
+
+        return resultRows;
+    }
+
+
     private ScatterResponseDTO fixedCountryScatter(ScatterRequestDTO request) throws IllegalArgumentException {
-        System.out.println(request);
         // get the country from the request
         String countryIso = request.getCountries().get(0);
 
@@ -125,7 +130,7 @@ public class countryServiceImpl implements countryService {
 
         
         if (xField.isEmpty() || yField.isEmpty()) {
-            throw new IllegalArgumentException("Both xField and yField must be empty");
+            throw new IllegalArgumentException("Both xField and yField must be present");
         }
 
         // get the table names from the request
@@ -143,18 +148,53 @@ public class countryServiceImpl implements countryService {
         Integer maxYear = Integer.valueOf(request.getYears().getMax());
 
         
-        Map<String, Object> data1 = findDataForCountry(countryIso, xMetricList, xTable).values().iterator().next();
-        Map<String, Object> data2 = findDataForCountry(countryIso, yMetricList, yTable).values().iterator().next();
+        Map<String, Map<String, Object>> result1;
+        Map<String, Map<String, Object>> result2;
+        Map<String, Object> data1 = null;
+        Map<String, Object> data2 = null;
+
+        result1 = findDataForCountry(countryIso, xMetricList, xTable);
+        result2 = findDataForCountry(countryIso, yMetricList, yTable);
+        try {
+            data1 = result1.values().iterator().next();
+            data2 = result2.values().iterator().next();
+        }
+        catch (Exception e) {
+            System.out.println("No data found for country " + countryIso);
+        }
+
 
         ScatterResponseDTO response = ScatterResponseDTO.mapToResponseDTO(data1, data2, minYear, maxYear);
-        System.out.println(response);
         return response;
+ 
+    }
+
+    private ScatterResponseDTO fixedYearScatter(ScatterRequestDTO request) throws IllegalArgumentException {
+        // get the fixed year from the request
+        String year = request.getYears().getMin();
+
+        // get the fields from the request
+        Map<String, String> xField = request.getxField();
+        Map<String, String> yField = request.getyField();
+
         
+        if (xField.isEmpty() || yField.isEmpty()) {
+            throw new IllegalArgumentException("Both xField and yField must be present");
+        }
 
-
-
+        // get the table names from the request
+        String xTable = xField.keySet().iterator().next();
+        String yTable = yField.keySet().iterator().next();
+        // get the field names from the request
+        String xMetric = xField.values().iterator().next();
+        String yMetric = yField.values().iterator().next();
 
         
+        List<Map<String, Object>> data1 = findDataForYear(year, xMetric, xTable);
+        List<Map<String, Object>> data2 = findDataForYear(year, yMetric, yTable);
 
+        ScatterResponseDTO response = ScatterResponseDTO.mapToResponseDTO(data1, data2, year);
+        return response;
+ 
     }
 }

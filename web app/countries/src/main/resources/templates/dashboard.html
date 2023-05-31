@@ -1130,6 +1130,27 @@
 <script th:inline="javascript">
 /*<![CDATA[*/
 const countries = /*[[${countries}]]*/ [];
+console.log("countries:", countries);
+function getCountryNameByIsoCode(isoCode) {
+  for (let i = 0; i < countries.length; i++) {
+    if (countries[i].iso_code === Number(isoCode)) {
+      return countries[i].iso3;
+    }
+  }
+  return null; // Return null if the iso_code is not found
+}
+
+function getRandomColors(numColors) {
+  const colors = [];
+
+  for (let i = 0; i < numColors; i++) {
+    // Generate a random hex color code
+    const colorCode = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    colors.push(colorCode);
+  }
+  console.log("colors:", colors);
+  return colors;
+}
 
 let sidebarOpen = false;
 let chartsSequence = 0;
@@ -1659,7 +1680,7 @@ class Scatter extends Chart{
                 rm.push(point.year);
             }
             else if (this._fixedField === "year"){
-                rm.push(point.countryoi);
+                rm.push(getCountryNameByIsoCode(point.country));
             }
             
         }
@@ -1668,8 +1689,16 @@ class Scatter extends Chart{
                 x: myX,
                 y: myY,
                 text: rm,
+                textposition: 'top center',
+                textfont: {
+                    family:  'Raleway, sans-serif'
+                },
                 name: this._fixedField ==='country'?Object.values(this._countries)[0]: this._years.min,
-                mode: 'markers',
+                mode: 'markers+text',
+                marker:{
+                    //random color for all markers
+                    color : getRandomColors(chartData.length), 
+                },
                 type: "scatter",
             }
         tracesToDraw.push(trace);

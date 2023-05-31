@@ -38,14 +38,14 @@ public class metricsRepositoryImpl implements metricsRepository {
     }
 
     @Override
-    public List<Map<String, Object>> findDataByYearAndField(String year, String fieldName, String tableName) {
+    public List<Map<String, Object>> findDataByYearAndField(String year, String fieldName, String tableName, List<String> countries) {
         String query = "";
 
         if (fieldName == null || fieldName.equals("")) {
-            query = "SELECT iso_code, \"" + year + "\", " + "\"" + year + "\" FROM " + tableName + ";";
+            query = "SELECT iso_code, \"" + year + "\", " + "\"" + year + "\" FROM " + tableName + " WHERE iso_code in ('" + String.join("','", countries) + "');";
         }
         else {
-            query = "SELECT iso_code, \"" + year + "\", " + "\"" + year + "\" FROM " + tableName + " WHERE field='" + fieldName + "';";
+            query = "SELECT iso_code, \"" + year + "\", " + "\"" + year + "\" FROM " + tableName + " WHERE field='" + fieldName + "' AND iso_code in ('" + String.join("','", countries) +"');";
         }
 
         return jdbcTemplate.queryForList(query);

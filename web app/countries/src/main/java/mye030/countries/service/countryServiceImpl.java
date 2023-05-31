@@ -113,8 +113,8 @@ public class countryServiceImpl implements countryService {
         return result;
     }
 
-    private List<Map<String, Object>> findDataForYear(String year, String fieldName, String tableName) {
-        List<Map<String, Object>> resultRows = metricsRepository.findDataByYearAndField(year, fieldName, tableName);
+    private List<Map<String, Object>> findDataForYear(String year, String fieldName, String tableName, List<String> countries) {
+        List<Map<String, Object>> resultRows = metricsRepository.findDataByYearAndField(year, fieldName, tableName, countries);
 
         return resultRows;
     }
@@ -173,6 +173,9 @@ public class countryServiceImpl implements countryService {
         // get the fixed year from the request
         String year = request.getYears().getMin();
 
+        // get the countries from the request
+        List<String> countries = request.getCountries();
+
         // get the fields from the request
         Map<String, String> xField = request.getxField();
         Map<String, String> yField = request.getyField();
@@ -190,8 +193,8 @@ public class countryServiceImpl implements countryService {
         String yMetric = yField.values().iterator().next();
 
         
-        List<Map<String, Object>> data1 = findDataForYear(year, xMetric, xTable);
-        List<Map<String, Object>> data2 = findDataForYear(year, yMetric, yTable);
+        List<Map<String, Object>> data1 = findDataForYear(year, xMetric, xTable, countries);
+        List<Map<String, Object>> data2 = findDataForYear(year, yMetric, yTable, countries);
 
         ScatterResponseDTO response = ScatterResponseDTO.mapToResponseDTO(data1, data2, year);
         return response;

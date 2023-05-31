@@ -3,8 +3,6 @@ package mye030.countries.dto;
 import java.util.*;
 
 
-import org.apache.catalina.connector.Response;
-
 public class ScatterResponseDTO {
     private String fixed;
     private List<Map<String, Object>> dataPoints;

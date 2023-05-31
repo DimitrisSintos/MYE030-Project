@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.connector.Response;
 
 public class TimeseriesResponseDTO {
     private Map<String, Map<String, FieldDTO>> data;

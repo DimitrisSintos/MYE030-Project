@@ -25,6 +25,7 @@
 `pip3 install -r requirements.pip`
 
 - Create the database:
+extract Datasets.zip
 `cd Scripts
 sudo ./createDB.sh
 python3 csvToPostgres.py`
@@ -37,13 +38,10 @@ alter table public.population_by_age_sex
 add column field varchar;
 
 update population_by_age_sex
+
 set field = sex || '_' || age;
 
-select pg_size_pretty(pg_relation_size('five_year_age_groups_population'));
-
 vacuum full five_year_age_groups_population;
-
-select pg_size_pretty(pg_relation_size('population_by_age_sex'));
 
 vacuum full population_by_age_sex;
 

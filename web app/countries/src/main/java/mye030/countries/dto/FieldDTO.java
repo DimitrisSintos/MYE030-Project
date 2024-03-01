@@ -5,6 +5,7 @@ import java.util.List;
 public class FieldDTO {
     private List<String> x;
     private List<String> y;
+    
     public List<String> getX() {
         return x;
     }

@@ -13,6 +13,7 @@ import mye030.countries.model.Country;
 
 @Service
 public interface countryService {
+    
     List<Country> getAllCountries();
 
     TimeseriesResponseDTO processTimeseriesRequest(TimeseriesRequestDTO request);

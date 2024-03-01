@@ -1,4 +1,5 @@
 /Datasets
 /Scripts/__pycache__
-Datasets.zip
+# Datasets.zip
 venv/
+.venv/

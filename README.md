@@ -1,54 +1,77 @@
-# MYE030-Project
+# [MYE030-Project-2023](https://www.cse.uoi.gr/~pvassil/courses/db_III/info.html)
+
+This project is a Spring Boot application that uses a PostgreSQL database. Users can generate dynamic line charts, bar charts, and scatter plots utilizing geopolitical
+data.
 
 ## Contributors
 
-[Dimitrios Sintos](https://github.com/DimitrisSintos)
-[Athanasios Kaliviotis](https://github.com/thankal) 
-[Dimitrios Giannitsakis](https://github.com/dimgiann)
+- [Dimitrios Sintos](https://github.com/DimitrisSintos)
+- [Athanasios Kaliviotis](https://github.com/thankal)
+- [Dimitrios Giannitsakis](https://github.com/dimgiann)
 
-## How to set up the project
+## Project Setup
 
-- Install Postgres and pgAdmin.
+This application was developed in Debian based Linux OS.
 
-  Postgres:
-  `sudo apt install postgresql postgresql-client`
+1. **Install Postgres and pgAdmin:**
 
-  PgAdmin:
-  `curl -fsSL https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgadmin.gpg`
+   - Postgres: `sudo apt install postgresql postgresql-client`
+   - Database Management Tool: Install either pgAdmin or DBeaver.
 
-`sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'`
+2. **Create Python Virtual Environment:**
 
-`sudo apt update`
-`sudo apt install pgadmin4`
+   ```bash
+   sudo apt install python3.10-venv
+   python3 -m venv .venv --prompt mye030-project
+   source .venv/bin/activate
+    ```
 
-- Install Python requirements:
-`pip3 install -r requirements.pip`
+3. **Install Python Requirements:**
 
-- Create the database:
-extract Datasets.zip
-`cd Scripts
-sudo ./createDB.sh
-python3 csvToPostgres.py`
+   ```bash
+   pip3 install -r requirements.pip
+   ```
 
-- In gqAdmin query tool, run the following queries:
-update five_year_age_groups_population
-set field = field || '_' || ranges;
+4. **Create Database:**
 
-alter table public.population_by_age_sex
-add column field varchar;
+- Extract Datasets.zip
+- Run the following commands in the terminal:
 
-update population_by_age_sex
+    ```bash
+    cd Scripts
+    sudo ./createDB.sh
+    python3 csvToPostgres.py
+    ```
 
-set field = sex || '_' || age;
+5. **MUST Run this Queries:**
 
-vacuum full five_year_age_groups_population;
+- In pgAdmin query tool, execute:
 
-vacuum full population_by_age_sex;
+    ```sql
+        update five_year_age_groups_population
+        set field = field || '_' || ranges;
 
-- Install Java:
-`sudo apt-get install openjdk-8-jdk -y`
+        alter table public.population_by_age_sex
+        add column field varchar;
 
-In Visual Studio Code, install "Extension Pack for Java".
+        update population_by_age_sex
 
-## How to run:
-In Visual Studio, select `CountriesApplication.java` and click the play button. The app will launch at http://localhost:8080/.
+        set field = sex || '_' || age;
+
+        vacuum full five_year_age_groups_population;
+
+        vacuum full population_by_age_sex;
+    ```
+
+6. **Install Java :**
+
+    ```bash
+        sudo apt-get install openjdk-8-jdk -y
+    ```
+
+    - In Visual Studio Code, install "Extension Pack for Java".
+
+## How to RUN
+
+1. In Visual Studio Code, select CountriesApplication.java.
+2. Click the play button to launch the app at http://localhost:8080/.
